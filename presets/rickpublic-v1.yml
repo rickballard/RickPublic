@@ -1,0 +1,14 @@
+# Article Preset (rickpublic-v1)
+title_case: sentence
+byline: "Rick"
+tone: "punchy-analytical"
+rules:
+  - "Prefer bullets. Max 5 per list."
+  - "No throat-clearing phrases (e.g., 'Across the world')."
+  - "Each claim links to a source or method."
+  - "Conjoint terms allowed with double caps (e.g., DonDemogog)."
+  - "End with 'Method Notes' + repo back-links."
+format:
+  toc: false
+  footnotes: true
+  scripttag_badge: "[ScripTag: merit-method-v0](/ScripTag/README.md)"
