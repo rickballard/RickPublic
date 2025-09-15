@@ -6,54 +6,59 @@ $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Drawing
 $rows = Import-Csv -Path $In
 
-# Bigger canvas
-$w=2400;$h=1800
+# Big canvas, tighter pad for less whitespace
+$w=3200;$h=2200
+$pad=110
 $bmp = New-Object System.Drawing.Bitmap($w,$h)
 $g   = [System.Drawing.Graphics]::FromImage($bmp)
-$g.SmoothingMode = 'AntiAlias'
+$g.SmoothingMode     = 'AntiAlias'
+$g.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::ClearTypeGridFit
 $g.FillRectangle([System.Drawing.Brushes]::White,0,0,$w,$h)
 
-$pad=160
 $x0=$pad;$y0=$pad;$x1=$w-$pad;$y1=$h-$pad
 
-# Thicker axes
-$pen  = New-Object System.Drawing.Pen([System.Drawing.Color]::Black,4)
-$g.DrawLine($pen,$x0,$y1,$x1,$y1)
-$g.DrawLine($pen,$x0,$y1,$x0,$y0)
+# Axes (thicker)
+$axisPen = New-Object System.Drawing.Pen([System.Drawing.Color]::Black,6)
+$g.DrawLine($axisPen,$x0,$y1,$x1,$y1)
+$g.DrawLine($axisPen,$x0,$y1,$x0,$y0)
 
-# Larger fonts
-$axis  = New-Object System.Drawing.Font("Segoe UI",28,[System.Drawing.FontStyle]::Regular)
-$ticks = New-Object System.Drawing.Font("Segoe UI",22)
-$label = New-Object System.Drawing.Font("Segoe UI",24,[System.Drawing.FontStyle]::Bold)
-$title = New-Object System.Drawing.Font("Segoe UI",44,[System.Drawing.FontStyle]::Bold)
+# Fonts (big)
+$axis  = New-Object System.Drawing.Font("Segoe UI",42,[System.Drawing.FontStyle]::Regular)
+$ticks = New-Object System.Drawing.Font("Segoe UI",34)
+$label = New-Object System.Drawing.Font("Segoe UI",38,[System.Drawing.FontStyle]::Bold)
+$title = New-Object System.Drawing.Font("Segoe UI",66,[System.Drawing.FontStyle]::Bold)
 $brush = [System.Drawing.Brushes]::Black
+$dim   = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(190,0,0,0))
 
-$g.DrawString("Institutional Resilience (weak → strong)",$axis,$brush,($w/2-520),$h-$pad+60)
-$g.DrawString("Crisis Exploitation (low → high)",       $axis,$brush,0,$y0-100)
+# Axis labels
+$g.DrawString("Institutional Resilience (weak → strong)",$axis,$brush,($w/2-850),$h-$pad+70)
+$g.DrawString("Crisis Exploitation (low → high)",       $axis,$brush,0,$y0-120)
 
-# Ticks
+# Ticks (spaced, large)
 for($i=0;$i -le 10;$i++){
   $t=$i/10
   $x=[int]($x0 + $t*($x1-$x0))
   $y=[int]($y1 - $t*($y1-$y0))
-  $g.DrawLine($pen,$x,$y1,$x,$y1+12)
-  $g.DrawString(("{0:n1}" -f $t),$ticks,$brush,$x-26,$y1+16)
-  $g.DrawLine($pen,$x0-12,$y,$x0,$y)
-  $g.DrawString(("{0:n1}" -f $t),$ticks,$brush,$x0-62,$y-16)
+  $g.DrawLine($axisPen,$x,$y1,$x,$y1+18)
+  $g.DrawString(("{0:n1}" -f $t),$ticks,$dim,$x-34,$y1+24)
+  $g.DrawLine($axisPen,$x0-18,$y,$x0,$y)
+  $g.DrawString(("{0:n1}" -f $t),$ticks,$dim,$x0-80,$y-22)
 }
 
 # Midlines
-$dash = New-Object System.Drawing.Pen([System.Drawing.Color]::Gray,3)
-$dash.DashStyle = 'Dash'
+$dash = New-Object System.Drawing.Pen([System.Drawing.Color]::Gray,4)
+$dash.DashStyle='Dash'
 $midX=[int]($x0+0.5*($x1-$x0)); $midY=[int]($y1-0.5*($y1-$y0))
 $g.DrawLine($dash,$midX,$y0,$midX,$y1)
 $g.DrawLine($dash,$x0,$midY,$x1,$midY)
 
-# Bigger bubbles (population)
-$minSize=36;$maxSize=120
+# Bubbles: scale UP (relative preserved)
+$minSize=90; $maxSize=280
 $vals = ($rows | ForEach-Object{ [double]($_.pop_or_gdp) })
 $min=[math]::Max(1.0, ($vals | Measure-Object -Minimum).Minimum)
 $max=[math]::Max($min+1.0, ($vals | Measure-Object -Maximum).Maximum)
+
+$bOutline = New-Object System.Drawing.Pen([System.Drawing.Color]::Black,4)
 
 foreach($r in $rows){
   $xr=[double]$r.inst_resilience
@@ -63,14 +68,21 @@ foreach($r in $rows){
   $y=[int]($y1 - $yr*($y1-$y0))
   $rad=[int]($minSize + ($sz-$min)/($max-$min) * ($maxSize-$minSize))
   $rect = New-Object System.Drawing.Rectangle(($x-$rad/2),($y-$rad/2),$rad,$rad)
-  $fill = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(110,0,0,0))
+  $fill = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(120,0,0,0))
   $g.FillEllipse($fill,$rect)
-  $g.DrawEllipse($pen,$rect)
-  $g.DrawString($r.country,$label,$brush,($x+$rad/2+8),($y-$rad/2-8))
+  $g.DrawEllipse($bOutline,$rect)
+
+  # White label chip for readability
+  $txt  = $r.country
+  $size = $g.MeasureString($txt,$label)
+  $chip = New-Object System.Drawing.RectangleF(($x+$rad/2+14), ($y-$rad/2-14), $size.Width+26, $size.Height+16)
+  $chipBg = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(242,255,255,255))
+  $g.FillRectangle($chipBg,$chip)
+  $g.DrawString($txt,$label,$brush,$chip.X+10,$chip.Y+6)
 }
 
-$g.DrawString("DonDemogog — BCG-style Risk Map",$title,$brush,($w/2-560),50)
+# Title
+$g.DrawString("DonDemogog — BCG-style Risk Map",$title,$brush,($w/2-900),70)
 
 $bmp.Save($Out,[System.Drawing.Imaging.ImageFormat]::Png)
 $g.Dispose();$bmp.Dispose()
-Write-Host "Wrote $Out"
