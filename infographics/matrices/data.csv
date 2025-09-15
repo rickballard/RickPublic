@@ -1,2 +1,2 @@
-country,inst_resilience,crisis_exploitation,population_gdp
-<COUNTRY>,0.7,0.2,100
+country,inst_resilience,crisis_exploitation,pop_or_gdp
+Exampleland,0.35,0.78,50
