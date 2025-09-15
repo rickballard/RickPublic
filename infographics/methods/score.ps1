@@ -5,22 +5,26 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# Load weights
-$weightsPath = Join-Path $PSScriptRoot 'weights.yml'
-$w = ConvertFrom-Yaml (Get-Content $weightsPath -Raw)
+# --- Load weights (JSON or defaults) ---
+$wPath = Join-Path $PSScriptRoot 'weights.json'
+if (Test-Path $wPath) {
+  $w = Get-Content $wPath -Raw | ConvertFrom-Json
+} else {
+  $w = [pscustomobject]@{ cpi_inv=0.4; press_inv=0.3; populism=0.3 }
+}
 
-# Read CSV
+# --- Read input CSV ---
 $rows = Import-Csv -Path $In
 
-# Simple composite: invert resilience; combine with exploitation + (optional) populism proxy
-# Here we treat crisis_exploitation as the proxy for "populism" if no explicit column exists.
+# --- Score ---
 $scored = foreach ($r in $rows) {
   $inst_res = [double]$r.inst_resilience
   $crx      = [double]$r.crisis_exploitation
 
-  $cpi_inv   = (1.0 - $inst_res)              # weaker institutions → higher corruption risk proxy
-  $press_inv = (1.0 - $inst_res) * 0.5        # placeholder if no press index present
-  $populism  = $crx                           # use crisis_exploitation as proxy
+  # Proxies (until we wire real indices):
+  $cpi_inv   = (1.0 - $inst_res)        # weaker institutions → higher corruption risk proxy
+  $press_inv = (1.0 - $inst_res) * 0.5  # placeholder proxy
+  $populism  = $crx                      # crisis exploitation as proxy
 
   $dd = $w.cpi_inv * $cpi_inv + $w.press_inv * $press_inv + $w.populism * $populism
 
