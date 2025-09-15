@@ -2,12 +2,13 @@ param(
   [string]$In  = ".\infographics\matrices\scored.csv",
   [string]$Out = ".\infographics\matrices\bcg.png"
 )
+
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Drawing
 $rows = Import-Csv -Path $In
 
-# Big canvas, tighter pad for less whitespace
-$w=3200;$h=2200
+# Big canvas; tighter padding to reduce whitespace
+$w=3200; $h=2200
 $pad=110
 $bmp = New-Object System.Drawing.Bitmap($w,$h)
 $g   = [System.Drawing.Graphics]::FromImage($bmp)
@@ -15,9 +16,9 @@ $g.SmoothingMode     = 'AntiAlias'
 $g.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::ClearTypeGridFit
 $g.FillRectangle([System.Drawing.Brushes]::White,0,0,$w,$h)
 
-$x0=$pad;$y0=$pad;$x1=$w-$pad;$y1=$h-$pad
+$x0=$pad; $y0=$pad; $x1=$w-$pad; $y1=$h-$pad
 
-# Axes (thicker)
+# Axes
 $axisPen = New-Object System.Drawing.Pen([System.Drawing.Color]::Black,6)
 $g.DrawLine($axisPen,$x0,$y1,$x1,$y1)
 $g.DrawLine($axisPen,$x0,$y1,$x0,$y0)
@@ -34,7 +35,7 @@ $dim   = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(1
 $g.DrawString("Institutional Resilience (weak → strong)",$axis,$brush,($w/2-850),$h-$pad+70)
 $g.DrawString("Crisis Exploitation (low → high)",       $axis,$brush,0,$y0-120)
 
-# Ticks (spaced, large)
+# Ticks
 for($i=0;$i -le 10;$i++){
   $t=$i/10
   $x=[int]($x0 + $t*($x1-$x0))
@@ -53,12 +54,11 @@ $g.DrawLine($dash,$midX,$y0,$midX,$y1)
 $g.DrawLine($dash,$x0,$midY,$x1,$midY)
 
 # Bubbles: scale UP (relative preserved)
-$minSize=90; $maxSize=280
+$minSize=110; $maxSize=340
 $vals = ($rows | ForEach-Object{ [double]($_.pop_or_gdp) })
 $min=[math]::Max(1.0, ($vals | Measure-Object -Minimum).Minimum)
 $max=[math]::Max($min+1.0, ($vals | Measure-Object -Maximum).Maximum)
-
-$bOutline = New-Object System.Drawing.Pen([System.Drawing.Color]::Black,4)
+$bOutline = New-Object System.Drawing.Pen([System.Drawing.Color]::Black,6)
 
 foreach($r in $rows){
   $xr=[double]$r.inst_resilience
@@ -72,17 +72,21 @@ foreach($r in $rows){
   $g.FillEllipse($fill,$rect)
   $g.DrawEllipse($bOutline,$rect)
 
-  # White label chip for readability
+  # White label chip (int rectangle)
   $txt  = $r.country
   $size = $g.MeasureString($txt,$label)
-  $chip = New-Object System.Drawing.RectangleF(($x+$rad/2+14), ($y-$rad/2-14), $size.Width+26, $size.Height+16)
+  $chipX = [int]($x + $rad/2 + 14)
+  $chipY = [int]($y - $rad/2 - 14)
+  $chipW = [int]($size.Width + 26)
+  $chipH = [int]($size.Height + 16)
+  $chip   = New-Object System.Drawing.Rectangle($chipX, $chipY, $chipW, $chipH)
   $chipBg = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(242,255,255,255))
-  $g.FillRectangle($chipBg,$chip)
-  $g.DrawString($txt,$label,$brush,$chip.X+10,$chip.Y+6)
+  $g.FillRectangle($chipBg, $chip)
+  $g.DrawString($txt, $label, $brush, $chipX + 10, $chipY + 6)
 }
 
 # Title
 $g.DrawString("DonDemogog — BCG-style Risk Map",$title,$brush,($w/2-900),70)
 
 $bmp.Save($Out,[System.Drawing.Imaging.ImageFormat]::Png)
-$g.Dispose();$bmp.Dispose()
+$g.Dispose(); $bmp.Dispose()
