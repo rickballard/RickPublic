@@ -1,9 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
-  <defs>
-    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-    </filter>
-  </defs>
-  <circle cx="48" cy="48" r="28" fill="none" stroke="#ff9f0a" stroke-width="8"/>
-  <circle cx="48" cy="48" r="40" fill="none" stroke="#ff9f0a" stroke-opacity="0.3" stroke-width="6" filter="url(#blur)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" style="color:#ff9f0a">
+<path d="M 120.67,423.12 A 215.04,215.04 0 1 1 391.33,423.12"  stroke-width="40" stroke-linecap="round" fill="none"/ fill="#ff9f0a" stroke="#ff9f0a">
+<path d="M 157.17,378.04 A 157.04,157.04 0 1 1 354.83,378.04"  stroke-width="40" stroke-linecap="round" fill="none"/ fill="#ff9f0a" stroke="#ff9f0a">
+<path d="M 193.67,332.97 A 99.04,99.04 0 1 1 318.33,332.97"  stroke-width="40" stroke-linecap="round" fill="none"/ fill="#ff9f0a" stroke="#ff9f0a">
 </svg>
