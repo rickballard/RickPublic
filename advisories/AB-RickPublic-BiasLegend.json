@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "dimensions": {
+    "truth": [
+      "green",
+      "yellow",
+      "red"
+    ],
+    "source_bias": [
+      "balanced",
+      "partisan",
+      "propaganda"
+    ],
+    "intent": [
+      "inform",
+      "outrage",
+      "fear",
+      "sell",
+      "distract"
+    ],
+    "congruence": [
+      "green",
+      "amber",
+      "red"
+    ]
+  },
+  "icons": {
+    "truth": {
+      "green": "\ud83d\udfe2",
+      "yellow": "\ud83d\udfe1",
+      "red": "\ud83d\udd34"
+    },
+    "source_bias": {
+      "balanced": "\u2696\ufe0f",
+      "partisan": "\ud83c\udfad",
+      "propaganda": "\ud83d\udce2"
+    },
+    "intent": {
+      "inform": "\ud83e\udd14",
+      "outrage": "\ud83d\ude21",
+      "fear": "\ud83d\ude31",
+      "sell": "\ud83d\uded2",
+      "distract": "\ud83d\udca4"
+    },
+    "congruence_halo": {
+      "green": "assets/icons/CoCivium/halo-green.svg",
+      "amber": "assets/icons/CoCivium/halo-amber.svg",
+      "red": "assets/icons/CoCivium/halo-red.svg"
+    }
+  },
+  "rules": {
+    "min_receipts": 2,
+    "max_reframe_bullets": 3,
+    "require_exemplar_per_issue": true
+  }
+}

@@ -1,0 +1,22 @@
+name: Publish to Substack (staged)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'drafts/**'
+      - 'advisories/**'
+      - 'assets/**'
+      - 'sources/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare issue payload
+        run: |
+          echo '::group::Simulating publish step'
+          ls -la drafts || true
+          echo 'This is a placeholder. Wire to your Substack API in a later commit.'
+          echo '::endgroup::'
