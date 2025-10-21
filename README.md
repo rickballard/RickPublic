@@ -51,3 +51,9 @@ Point it at a section that documents method & assumptions.
 - Data: Transparency International (CPI), Freedom House (PF), V-Dem or WGI for governance.
 - Normalize 0–1; composite = w1*CPI_inv + w2*PF_inv + w3*PopulismScore.
 - Publish weights & code in `infographics/methods/`.
+
+<!-- BEGIN: STATUS -->
+### Operational Status
+CoDrift Index: n/a% (n/a)
+<!-- END: STATUS -->
+
