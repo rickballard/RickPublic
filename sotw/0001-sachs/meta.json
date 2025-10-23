@@ -5,7 +5,21 @@
   "speaker": "Jeffrey D. Sachs",
   "source_url": "https://www.youtube.com/watch?v=GQFfCRrKz3Y",
   "published_at": "2025-10-23",
-  "insight_ids": ["INS-example1","INS-example2"],
-  "tags": ["geopolitics","policy","risk","ai"],
-  "badges": ["CoAudit","MeritRank","CoCore","CoAgent","No-Coercion"]
+  "insight_ids": [
+    "INS-EXAMPLE1",
+    "INS-EXAMPLE2"
+  ],
+  "tags": [
+    "geopolitics",
+    "policy",
+    "risk",
+    "ai"
+  ],
+  "badges": [
+    "CoAudit",
+    "MeritRank",
+    "CoCore",
+    "CoAgent",
+    "No-Coercion"
+  ]
 }
