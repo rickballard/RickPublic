@@ -1,0 +1,16 @@
+{
+  "title": "AdviceBomb: CoWrapped \u2014 RickPublic / InSights / AI Access & Guidance (v3)",
+  "origin": "CoCivium (current session)",
+  "intent": [
+    "Integrate CoCivium Insights with RickPublic Substack pipeline",
+    "Establish AI-readable indexing and concept-based linking (GIBindex, CoRef)",
+    "Provide non-directive, strawman-style governance and content organization guidance",
+    "Enable concurrent sessions to adopt these practices autonomously"
+  ],
+  "philosophy": "All components are proposals and prototypes\u2014no directives. Each section exists to inspire human-AI co-evolution through flexible patterns.",
+  "usage": [
+    "Unzip anywhere. Start with README.md",
+    "Each folder is self-contained and descriptive",
+    "No scripts perform mutations unless intentionally executed (DO_* scripts)"
+  ]
+}
