@@ -1,6 +1,451 @@
 {
-  "generated_at": "2025-10-23T14:09:50",
+  "generated_at": "2025-10-23T14:46:09",
   "repo": "rickballard/CoCivium",
   "branch": "main",
-  "items": null
+  "items": [
+    {
+      "insight_id": "ActuatorNet",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/ActuatorNet.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/ActuatorNet.md"
+    },
+    {
+      "insight_id": "Agency Commons",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/Agency Commons.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/Agency Commons.md"
+    },
+    {
+      "insight_id": "ai-in-pandoras-box",
+      "role": "",
+      "path": "insights/ai-in-pandoras-box.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/ai-in-pandoras-box.md"
+    },
+    {
+      "insight_id": "ai-veto",
+      "role": "",
+      "path": "insights/ai-veto.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/ai-veto.md"
+    },
+    {
+      "insight_id": "CivicID Protocol",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CivicID Protocol.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CivicID Protocol.md"
+    },
+    {
+      "insight_id": "CoAgency-Implementation",
+      "role": "",
+      "path": "insights/CoAgency/CoAgency-Implementation.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/CoAgency-Implementation.md"
+    },
+    {
+      "insight_id": "CoAgency-Theory",
+      "role": "Theory",
+      "path": "insights/CoAgency/CoAgency-Theory.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/CoAgency-Theory.md"
+    },
+    {
+      "insight_id": "CoAgent",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CoAgent.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CoAgent.md"
+    },
+    {
+      "insight_id": "CoCache",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CoCache.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CoCache.md"
+    },
+    {
+      "insight_id": "CoEthos",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CoEthos.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CoEthos.md"
+    },
+    {
+      "insight_id": "CoID",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CoID.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CoID.md"
+    },
+    {
+      "insight_id": "Congruence Engine",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/Congruence Engine.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/Congruence Engine.md"
+    },
+    {
+      "insight_id": "consent-controversies",
+      "role": "",
+      "path": "insights/consent-controversies.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/consent-controversies.md"
+    },
+    {
+      "insight_id": "CoPersona",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CoPersona.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CoPersona.md"
+    },
+    {
+      "insight_id": "CoStd",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CoStd.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CoStd.md"
+    },
+    {
+      "insight_id": "CoTreaty",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/CoTreaty.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/CoTreaty.md"
+    },
+    {
+      "insight_id": "epistemology",
+      "role": "",
+      "path": "insights/epistemology.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/epistemology.md"
+    },
+    {
+      "insight_id": "forking-as-epistemic-containment",
+      "role": "",
+      "path": "insights/forking-as-epistemic-containment.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/forking-as-epistemic-containment.md"
+    },
+    {
+      "insight_id": "global-village-buyback",
+      "role": "",
+      "path": "insights/global-village-buyback.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/global-village-buyback.md"
+    },
+    {
+      "insight_id": "glossary-metaphysics",
+      "role": "",
+      "path": "insights/glossary-metaphysics.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/glossary-metaphysics.md"
+    },
+    {
+      "insight_id": "gravitas-scroll",
+      "role": "",
+      "path": "insights/gravitas-scroll.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/gravitas-scroll.md"
+    },
+    {
+      "insight_id": "HealthGate-Lessons-v1.0",
+      "role": "",
+      "path": "insights/BPOE/HealthGate-Lessons-v1.0.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/BPOE/HealthGate-Lessons-v1.0.md"
+    },
+    {
+      "insight_id": "IdeaCard_3Panel_CoCache_Heartbeat",
+      "role": "",
+      "path": "insights/IdeaCard_3Panel_CoCache_Heartbeat.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_3Panel_CoCache_Heartbeat.md"
+    },
+    {
+      "insight_id": "IdeaCard_Being_Rights",
+      "role": "",
+      "path": "insights/IdeaCard_Being_Rights.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_Being_Rights.md"
+    },
+    {
+      "insight_id": "IdeaCard_CoAnchor_And_CoJanus",
+      "role": "",
+      "path": "insights/IdeaCard_CoAnchor_And_CoJanus.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_CoAnchor_And_CoJanus.md"
+    },
+    {
+      "insight_id": "IdeaCard_CoStasis_AllSmokes",
+      "role": "",
+      "path": "insights/IdeaCard_CoStasis_AllSmokes.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_CoStasis_AllSmokes.md"
+    },
+    {
+      "insight_id": "IdeaCard_Oddnotes_20250905",
+      "role": "",
+      "path": "insights/IdeaCard_Oddnotes_20250905.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_Oddnotes_20250905.md"
+    },
+    {
+      "insight_id": "IdeaCard_Placeholder1_20250908_0127",
+      "role": "",
+      "path": "insights/IdeaCard_Placeholder1_20250908_0127.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_Placeholder1_20250908_0127.md"
+    },
+    {
+      "insight_id": "IdeaCard_Placeholder2_20250908_0127",
+      "role": "",
+      "path": "insights/IdeaCard_Placeholder2_20250908_0127.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_Placeholder2_20250908_0127.md"
+    },
+    {
+      "insight_id": "IdeaCard_Placeholder3_20250908_0127",
+      "role": "",
+      "path": "insights/IdeaCard_Placeholder3_20250908_0127.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_Placeholder3_20250908_0127.md"
+    },
+    {
+      "insight_id": "IdeaCard_Placeholder4_20250908_0127",
+      "role": "",
+      "path": "insights/IdeaCard_Placeholder4_20250908_0127.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/IdeaCard_Placeholder4_20250908_0127.md"
+    },
+    {
+      "insight_id": "inadequacy-of-words",
+      "role": "",
+      "path": "insights/inadequacy-of-words.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/inadequacy-of-words.md"
+    },
+    {
+      "insight_id": "index",
+      "role": "",
+      "path": "insights/index.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/index.md"
+    },
+    {
+      "insight_id": "Insight_AI_in_Pandoras_Box_c6_20250723",
+      "role": "",
+      "path": "insights/Insight_AI_in_Pandoras_Box_c6_20250723.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_AI_in_Pandoras_Box_c6_20250723.md"
+    },
+    {
+      "insight_id": "Insight_AI_Veto_c4_20250801",
+      "role": "",
+      "path": "insights/Insight_AI_Veto_c4_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_AI_Veto_c4_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Consent_Controversies_c1_20250731",
+      "role": "",
+      "path": "insights/Insight_Consent_Controversies_c1_20250731.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Consent_Controversies_c1_20250731.md"
+    },
+    {
+      "insight_id": "Insight_Epistemology_c3_20250801",
+      "role": "",
+      "path": "insights/Insight_Epistemology_c3_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Epistemology_c3_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Forking_as_Epistemic_Containment_c3_20250801",
+      "role": "",
+      "path": "insights/Insight_Forking_as_Epistemic_Containment_c3_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Forking_as_Epistemic_Containment_c3_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Glossary_Metaphysics_c5_20250731",
+      "role": "",
+      "path": "insights/Insight_Glossary_Metaphysics_c5_20250731.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Glossary_Metaphysics_c5_20250731.md"
+    },
+    {
+      "insight_id": "Insight_Gravitas_Scroll_c0_20250730",
+      "role": "",
+      "path": "insight/Insight_Gravitas_Scroll_c0_20250730.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insight/Insight_Gravitas_Scroll_c0_20250730.md"
+    },
+    {
+      "insight_id": "Insight_Gravitas_Scroll_c0_20250730",
+      "role": "",
+      "path": "insights/_deprecated/Insight_Gravitas_Scroll_c0_20250730.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/_deprecated/Insight_Gravitas_Scroll_c0_20250730.md"
+    },
+    {
+      "insight_id": "Insight_Gravitas_Scroll_c3_20250801",
+      "role": "",
+      "path": "insights/Insight_Gravitas_Scroll_c3_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Gravitas_Scroll_c3_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Inadequacy_of_Words_c5_20250731",
+      "role": "",
+      "path": "insights/Insight_Inadequacy_of_Words_c5_20250731.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Inadequacy_of_Words_c5_20250731.md"
+    },
+    {
+      "insight_id": "Insight_Interpretive_Vectors_c3_20250731",
+      "role": "",
+      "path": "insights/Insight_Interpretive_Vectors_c3_20250731.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Interpretive_Vectors_c3_20250731.md"
+    },
+    {
+      "insight_id": "Insight_Radiant_Network_c4_20250801",
+      "role": "",
+      "path": "insights/Insight_Radiant_Network_c4_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Radiant_Network_c4_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Rights_Alignment_c3_20250801",
+      "role": "",
+      "path": "insights/Insight_Rights_Alignment_c3_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Rights_Alignment_c3_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Scaling_Civium_Coherence_c2_20250801",
+      "role": "",
+      "path": "insights/Insight_Scaling_Civium_Coherence_c2_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Scaling_Civium_Coherence_c2_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Story_Being_Noname_c2_20250801",
+      "role": "",
+      "path": "insights/Insight_Story_Being_Noname_c2_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Story_Being_Noname_c2_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Substrate_Assumptions_c1_20250809",
+      "role": "",
+      "path": "insights/Insight_Substrate_Assumptions_c1_20250809.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Substrate_Assumptions_c1_20250809.md"
+    },
+    {
+      "insight_id": "Insight_Substrate_Assumptions_c2_20250809",
+      "role": "",
+      "path": "insights/Insight_Substrate_Assumptions_c2_20250809.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Substrate_Assumptions_c2_20250809.md"
+    },
+    {
+      "insight_id": "Insight_Substrate_Assumptions_c3_20250810",
+      "role": "",
+      "path": "insights/Insight_Substrate_Assumptions_c3_20250810.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Substrate_Assumptions_c3_20250810.md"
+    },
+    {
+      "insight_id": "Insight_Truth_Metrics_c6_20250801",
+      "role": "",
+      "path": "insights/Insight_Truth_Metrics_c6_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Truth_Metrics_c6_20250801.md"
+    },
+    {
+      "insight_id": "Insight_Unequal_Equity_c1_20250730",
+      "role": "",
+      "path": "insight/Insight_Unequal_Equity_c1_20250730.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insight/Insight_Unequal_Equity_c1_20250730.md"
+    },
+    {
+      "insight_id": "Insight_Unequal_Equity_v5a_20250801",
+      "role": "",
+      "path": "insights/Insight_Unequal_Equity_v5a_20250801.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/Insight_Unequal_Equity_v5a_20250801.md"
+    },
+    {
+      "insight_id": "insights_CoCEO_Whitepaper_execsum_draft_1of2",
+      "role": "",
+      "path": "insights/insights_CoCEO_Whitepaper_execsum_draft_1of2.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/insights_CoCEO_Whitepaper_execsum_draft_1of2.md"
+    },
+    {
+      "insight_id": "insights_CoCEO_Whitepaper_transcript_draft_2of2",
+      "role": "",
+      "path": "insights/insights_CoCEO_Whitepaper_transcript_draft_2of2.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/insights_CoCEO_Whitepaper_transcript_draft_2of2.md"
+    },
+    {
+      "insight_id": "interpretive-vectors",
+      "role": "",
+      "path": "insights/interpretive-vectors.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/interpretive-vectors.md"
+    },
+    {
+      "insight_id": "Ledger of Acts",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/Ledger of Acts.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/Ledger of Acts.md"
+    },
+    {
+      "insight_id": "Proof-of-Intent",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/Proof-of-Intent.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/Proof-of-Intent.md"
+    },
+    {
+      "insight_id": "radiant-network",
+      "role": "",
+      "path": "insights/radiant-network.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/radiant-network.md"
+    },
+    {
+      "insight_id": "README",
+      "role": "",
+      "path": "insights/README.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/README.md"
+    },
+    {
+      "insight_id": "README_Insight",
+      "role": "",
+      "path": "insights/README_Insight.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/README_Insight.md"
+    },
+    {
+      "insight_id": "README_LICENSE",
+      "role": "",
+      "path": "insights/audio/README_LICENSE.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/audio/README_LICENSE.md"
+    },
+    {
+      "insight_id": "readme-insight",
+      "role": "",
+      "path": "insights/readme-insight.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/readme-insight.md"
+    },
+    {
+      "insight_id": "RepTag",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/RepTag.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/RepTag.md"
+    },
+    {
+      "insight_id": "rights-alignment",
+      "role": "",
+      "path": "insights/rights-alignment.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/rights-alignment.md"
+    },
+    {
+      "insight_id": "scaling-civium-coherence",
+      "role": "",
+      "path": "insights/scaling-civium-coherence.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/scaling-civium-coherence.md"
+    },
+    {
+      "insight_id": "StatusNote",
+      "role": "",
+      "path": "insights/CoAgency/StatusNote.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/StatusNote.md"
+    },
+    {
+      "insight_id": "story-being-name-pending",
+      "role": "",
+      "path": "insights/story-being-name-pending.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/story-being-name-pending.md"
+    },
+    {
+      "insight_id": "story-being-noname",
+      "role": "",
+      "path": "insights/story-being-noname.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/story-being-noname.md"
+    },
+    {
+      "insight_id": "TrustFlag",
+      "role": "",
+      "path": "insights/CoAgency/terms/CoAgency/TrustFlag.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/CoAgency/terms/CoAgency/TrustFlag.md"
+    },
+    {
+      "insight_id": "truth-metrics",
+      "role": "",
+      "path": "insights/truth-metrics.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/truth-metrics.md"
+    },
+    {
+      "insight_id": "unequal-equity",
+      "role": "",
+      "path": "insights/unequal-equity.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/unequal-equity.md"
+    },
+    {
+      "insight_id": "unequal-equity-v5a",
+      "role": "",
+      "path": "insights/unequal-equity-v5a.md",
+      "url": "https://github.com/rickballard/CoCivium/blob/main/insights/unequal-equity-v5a.md"
+    }
+  ]
 }
