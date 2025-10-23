@@ -10,7 +10,12 @@
 - AI will **amplify both coordination and error**; sandbox agents, log data lineage, and publish reproducible playbooks for public scrutiny. {badges: 🤝 📚 🛡️}
 
 ## 2) What we heard (timestamped highlights)
-- **[00:00] Context frame:** historical decisions → current tensions.  
+- **[00:00]** You know, when I look at what's
+- **[00:01]** You know, when I look at what's
+- **[00:01]** You know, when I look at what's happening in Washington right now with
+- **[00:03]** happening in Washington right now with
+- **[00:03]** happening in Washington right now with this government shutdown, I see
+- **[00:05]** this government shutdown, I see
   **Why it matters:** policy path-dependence demands counterfactual testing in public justification. {badges: 🛡️}
 - **[MM:SS] Claim:** strategic moves (alliances/sanctions/tech controls) have **predictable blowback**.  
   **Why it matters:** adopt risk-budgeting with transparent assumptions and open critique channels. {badges: 🧮}
@@ -48,3 +53,4 @@
 —
 **Sources & Rights:** All rights to original content remain with their respective owners. Embedded video and brief excerpts are used for commentary/education.  
 **About CoCivium:** Learn more at www.CoCivium.org.
+
