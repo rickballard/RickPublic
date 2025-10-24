@@ -1,0 +1,11 @@
+{
+  "queries": [
+    "AI policy talk 2025",
+    "governance speech 2025",
+    "economics lecture 2025",
+    "institutional design seminar 2025"
+  ],
+  "minDurationSec": 600,
+  "maxDurationSec": 3600,
+  "maxAgeDays": 30
+}
