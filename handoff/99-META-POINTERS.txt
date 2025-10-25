@@ -1,0 +1,12 @@
+Repo: C:\Users\Chris\Documents\GitHub\RickPublic
+CandidatesDir: C:\Users\Chris\Documents\GitHub\RickPublic\candidates
+CurrentMonth: C:\Users\Chris\Documents\GitHub\RickPublic\candidates\2025-10.md
+SOTW2: C:\Users\Chris\Documents\GitHub\RickPublic\sotw\0002\post.md
+SOTW2Assets: C:\Users\Chris\Documents\GitHub\RickPublic\sotw\0002\assets
+Outbox: C:\Users\Chris\Documents\GitHub\RickPublic\outbox
+Tools.FindCandidates: C:\Users\Chris\Documents\GitHub\RickPublic\tools\Find-Candidates.ps1
+Tools.RunAndCommit: C:\Users\Chris\Documents\GitHub\RickPublic\tools\Run-Candidates-And-Commit.ps1
+Tools.GetTranscript: C:\Users\Chris\Documents\GitHub\RickPublic\tools\Get-Transcript.ps1
+Tools.PublishHelper: C:\Users\Chris\Documents\GitHub\RickPublic\tools\Publish-Helper.ps1
+Tools.Config: C:\Users\Chris\Documents\GitHub\RickPublic\tools\candidates.config.json
+Archive.SubstackAutomation: C:\Users\Chris\Documents\GitHub\RickPublic\archive\substack-automation
