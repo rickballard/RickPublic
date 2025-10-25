@@ -7,5 +7,59 @@
   ],
   "minDurationSec": 600,
   "maxDurationSec": 3600,
-  "maxAgeDays": 30
+  "maxAgeDays": 60,
+  "topics": {
+    "\ud83d\udee1\ufe0f CoAudit": [
+      "audit",
+      "transparency",
+      "accountability",
+      "oversight",
+      "safety case"
+    ],
+    "\ud83e\uddee MeritRank": [
+      "merit",
+      "scoring",
+      "ranking",
+      "peer review",
+      "evidence"
+    ],
+    "\ud83e\udd1d CoAgent": [
+      "multi-stakeholder",
+      "coordination",
+      "coalition",
+      "agentic",
+      "participatory"
+    ],
+    "\ud83d\udcda CoCore": [
+      "common knowledge",
+      "standards",
+      "protocols",
+      "open data",
+      "interoperability"
+    ],
+    "\ud83e\udded No-Coercion": [
+      "voluntary",
+      "consent",
+      "incentives",
+      "rights-preserving",
+      "non-coercive"
+    ]
+  },
+  "allowChannels": [
+    "LSE",
+    "Oxford",
+    "Brookings",
+    "MIT",
+    "Stanford",
+    "IMF",
+    "World Bank",
+    "Chatham House"
+  ],
+  "denyChannels": [
+    "clips",
+    "compilation",
+    "shorts",
+    "drama",
+    "reaction"
+  ]
 }
