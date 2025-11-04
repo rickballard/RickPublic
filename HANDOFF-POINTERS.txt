@@ -1,0 +1,12 @@
+Repo: C:\Users\Chris\Documents\GitHub\RickPublic
+Candidates: C:\Users\Chris\Documents\GitHub\RickPublic\candidates
+  Current month: C:\Users\Chris\Documents\GitHub\RickPublic\candidates\2025-10.md
+SOTW #2: C:\Users\Chris\Documents\GitHub\RickPublic\sotw\0002\post.md
+Assets: C:\Users\Chris\Documents\GitHub\RickPublic\sotw\0002\assets
+Outbox: C:\Users\Chris\Documents\GitHub\RickPublic\outbox
+Tools:
+  Find-Candidates.ps1         -> C:\Users\Chris\Documents\GitHub\RickPublic\tools\Find-Candidates.ps1
+  Run-Candidates-And-Commit   -> C:\Users\Chris\Documents\GitHub\RickPublic\tools\Run-Candidates-And-Commit.ps1
+  Get-Transcript.ps1          -> C:\Users\Chris\Documents\GitHub\RickPublic\tools\Get-Transcript.ps1
+  Publish-Helper.ps1          -> C:\Users\Chris\Documents\GitHub\RickPublic\tools\Publish-Helper.ps1
+  Config                       -> C:\Users\Chris\Documents\GitHub\RickPublic\tools\candidates.config.json
