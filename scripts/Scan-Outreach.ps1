@@ -11,6 +11,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# --- Taxonomy (category -> synonyms/phrases) ---
 $Taxonomy = @{
   "Email"            = @('email','gmail','mailing list','mailchimp','drip','newsletter','bcc','sequence')
   "Substack"         = @('substack','newsletter platform','publication','post','draft')
@@ -35,30 +36,38 @@ function Should-SkipPath($path) {
 }
 
 $rows = @()
+
 foreach ($t in $Targets) {
   if (-not (Test-Path $t)) { continue }
   $files = Get-ChildItem -Path $t -Recurse -File -Include $exts -ErrorAction SilentlyContinue
   foreach ($f in $files) {
     if (Should-SkipPath $f.FullName) { continue }
     try { $text = Get-Content -LiteralPath $f.FullName -Raw -ErrorAction Stop } catch { continue }
-    $hitConcepts = New-Object System.Collections.Generic.HashSet[string]
-    $hitCats     = New-Object System.Collections.Generic.HashSet[string]
+
+    # --- Array-based collectors (no .ToArray()) ---
+    $hitConcepts = @()
+    $hitCats     = @()
+
     foreach ($cat in $Taxonomy.Keys) {
       foreach ($syn in $Taxonomy[$cat]) {
-        if ($text -match [regex]::Escape($syn)) {
-          [void]$hitCats.Add($cat)
-          [void]$hitConcepts.Add($syn.Trim())
+        if ($null -ne $syn -and ($text -match [regex]::Escape($syn))) {
+          $hitCats     += $cat
+          $hitConcepts += ($syn.Trim())
         }
       }
     }
+
     if ($hitCats.Count -gt 0) {
+      $tags = ($hitConcepts | Where-Object { $_ -and $_.Trim() -ne '' } | Sort-Object -Unique)
+      $cats = ($hitCats     | Where-Object { $_ -and $_.Trim() -ne '' } | Sort-Object -Unique)
+
       $rows += [PSCustomObject]@{
-        Repo      = (Split-Path $t -Leaf)
-        Path      = $f.FullName
-        Size      = $f.Length
-        Updated   = $f.LastWriteTimeUtc
-        Tags      = ($hitConcepts.ToArray() | Sort-Object -Unique) -join ', '
-        Categories= ($hitCats.ToArray()     | Sort-Object -Unique) -join ', '
+        Repo       = (Split-Path $t -Leaf)
+        Path       = $f.FullName
+        Size       = $f.Length
+        Updated    = $f.LastWriteTimeUtc
+        Tags       = ($tags -join ', ')
+        Categories = ($cats -join ', ')
       }
     }
   }
@@ -66,6 +75,7 @@ foreach ($t in $Targets) {
 
 $rows = $rows | Sort-Object Updated -Descending
 
+# Write index
 $idxDir = Join-Path $RickPublic "docs/intent/outreach/indexes"
 if (-not (Test-Path $idxDir)) { New-Item -ItemType Directory -Path $idxDir | Out-Null }
 $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMdd_HHmmssZ')
