@@ -53,3 +53,4 @@
 
 ---
 **This doc is the single source of truth for Rick’s personal outreach.**
+> Latest Intent Index: [OUTREACH_INTENT_INDEX_20251107_202918Z.md](../outreach/indexes/OUTREACH_INTENT_INDEX_20251107_202918Z.md)
