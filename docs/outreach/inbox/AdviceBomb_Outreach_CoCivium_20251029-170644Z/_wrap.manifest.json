@@ -1,0 +1,24 @@
+{
+  "name": "AdviceBomb_Outreach_CoCivium_20251029-170644Z",
+  "created_utc": "20251029-170644Z",
+  "type": "advice-bomb",
+  "topic": "outreach-collateral",
+  "repo_first": true,
+  "bpoe": true,
+  "files": [
+    "README.md",
+    "OUTREACH_CHECKLIST.md",
+    "INBOX_LOG_row_template.md",
+    "outreach/README.md",
+    "outreach/email_templates/Outreach_Intro_Email_Long.md",
+    "outreach/email_templates/Outreach_Intro_Email_Short.md",
+    "outreach/email_templates/Variant_Government.md",
+    "outreach/email_templates/Variant_Nonprofit.md",
+    "outreach/email_templates/Variant_Investor.md",
+    "outreach/snippets/whatsapp.txt",
+    "outreach/snippets/pr-body.txt",
+    "outreach/targets/outreach_targets.csv",
+    "scripts/Publish-OutreachPack.ps1",
+    "tools/Verify-AdviceBomb.ps1"
+  ]
+}

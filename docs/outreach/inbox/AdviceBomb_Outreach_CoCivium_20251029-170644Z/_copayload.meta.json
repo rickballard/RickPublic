@@ -1,0 +1,16 @@
+{
+  "topic": "CoCivium Outreach",
+  "author": "<your-name>",
+  "created_utc": "20251029-170644Z",
+  "ethos": [
+    "no corruption",
+    "no coercion",
+    "no crowns"
+  ],
+  "pointers": {
+    "onboarding_checklist": "rickballard/CoContrib/contributors/elias/ONBOARDING_CHECKLIST.md",
+    "contrib_repo": "rickballard/CoContrib",
+    "zip_first_training": "rickballard/CoContrib/training/README.md",
+    "advice_inbox": "rickballard/CoCache/advice/inbox/README.md"
+  }
+}

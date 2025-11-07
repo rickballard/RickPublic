@@ -1,0 +1,2 @@
+PR body:
+This PR is part of the CoCivium 5‑minute starter. It fixes <line/typo/clarity> and demonstrates the zero‑footprint flow (GitHub edit → branch → PR). Ethos: no corruption, no coercion, no crowns.

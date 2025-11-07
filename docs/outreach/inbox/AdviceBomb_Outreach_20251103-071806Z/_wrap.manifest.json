@@ -1,0 +1,18 @@
+{
+  "type": "advicebomb",
+  "category": "outreach_partnerships",
+  "created_utc": "20251103-071806Z",
+  "partners": [
+    "decidim",
+    "polis",
+    "metagov-policykit",
+    "gov4git",
+    "loomio",
+    "g0v-vtaiwan",
+    "democracyearth",
+    "mysociety",
+    "openstates"
+  ],
+  "schema_version": "1.0.0",
+  "notes": "Standardized outreach kit with per-partner customizations."
+}
