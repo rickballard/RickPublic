@@ -5,48 +5,60 @@ param(
     "$HOME\Documents\GitHub\CoCivium",
     "$HOME\Documents\GitHub\CoPolitic"
   ),
-  [string]$RickPublic = "$HOME\Documents\GitHub\RickPublic"
+  [string]$RickPublic = "$HOME\Documents\GitHub\RickPublic",
+  [string[]]$ExcludeDirs = @('.git','node_modules','dist','build','.venv','.vscode','.idea')
 )
 
 $ErrorActionPreference = 'Stop'
 
-# Expand the concept lexicon beyond "outreach"
-$Concepts = @(
-  # core
-  'outreach','marketing','comms','communication','campaign','promotion',
-  'substack','newsletter','email','mailing list','drip','crm',
-  'social','twitter','x','linkedin','youtube','podcast',
-  'website','web site','landing','home page','docs site','github pages',
-  'partner','sponsor','donation','funding','grant',
-  'press','media','PR','public relations','announcement','launch',
-  'coarena','repozipper','copilot','agent','pilot','case study',
-  'guardrails','explain','undo','rollback','audit','compliance',
-  # intent/ICPs
-  'gov','civic','university','lab','regulator','nonprofit','philanthropy'
-)
+$Taxonomy = @{
+  "Email"            = @('email','gmail','mailing list','mailchimp','drip','newsletter','bcc','sequence')
+  "Substack"         = @('substack','newsletter platform','publication','post','draft')
+  "Social"           = @('social','twitter','x','linkedin','youtube','shorts','podcast','mastodon','bluesky')
+  "Website"          = @('website','web site','landing','home page','docs site','github pages','jekyll','hugo','eleventy')
+  "Launch/Pilot"     = @('announcement','launch','pilot','case study','press','media','PR','public relations','pressroom','press room','press kit')
+  "Product"          = @('coarena','repozipper','copilot','agent','demo','readme','quickstart','walkthrough')
+  "Funding/Partners" = @('partner','sponsor','donation','funding','grant','stripe','pledge','patreon')
+  "Comms/Strategy"   = @('outreach','marketing','comms','campaign','promotion','positioning','messaging','content calendar')
+  "Guardrails"       = @('guardrails','explain','undo','rollback','audit','compliance','objection window','evidence trail')
+  "ICPs"             = @('gov','civic','university','lab','regulator','nonprofit','philanthropy','municipal',' ministry ')
+}
 
-$exts = @('*.md','*.txt','*.json','*.yml','*.yaml')
+$exts = @('*.md','*.txt','*.json','*.yml','*.yaml','*.csv')
+
+function Should-SkipPath($path) {
+  foreach ($d in $ExcludeDirs) {
+    if ($path -match [regex]::Escape("\$d\")) { return $true }
+    if ($path -match [regex]::Escape("/$d/")) { return $true }
+  }
+  return $false
+}
 
 $rows = @()
-
 foreach ($t in $Targets) {
   if (-not (Test-Path $t)) { continue }
   $files = Get-ChildItem -Path $t -Recurse -File -Include $exts -ErrorAction SilentlyContinue
   foreach ($f in $files) {
-    try {
-      $text = Get-Content -LiteralPath $f.FullName -Raw -ErrorAction Stop
-    } catch { continue }
-    $hitConcepts = @()
-    foreach ($c in $Concepts) {
-      if ($text -match [regex]::Escape($c)) { $hitConcepts += $c }
+    if (Should-SkipPath $f.FullName) { continue }
+    try { $text = Get-Content -LiteralPath $f.FullName -Raw -ErrorAction Stop } catch { continue }
+    $hitConcepts = New-Object System.Collections.Generic.HashSet[string]
+    $hitCats     = New-Object System.Collections.Generic.HashSet[string]
+    foreach ($cat in $Taxonomy.Keys) {
+      foreach ($syn in $Taxonomy[$cat]) {
+        if ($text -match [regex]::Escape($syn)) {
+          [void]$hitCats.Add($cat)
+          [void]$hitConcepts.Add($syn.Trim())
+        }
+      }
     }
-    if ($hitConcepts.Count -gt 0) {
+    if ($hitCats.Count -gt 0) {
       $rows += [PSCustomObject]@{
-        Repo   = (Split-Path $t -Leaf)
-        Path   = $f.FullName
-        Size   = $f.Length
-        Updated= $f.LastWriteTimeUtc
-        Tags   = ($hitConcepts | Sort-Object -Unique) -join ', '
+        Repo      = (Split-Path $t -Leaf)
+        Path      = $f.FullName
+        Size      = $f.Length
+        Updated   = $f.LastWriteTimeUtc
+        Tags      = ($hitConcepts.ToArray() | Sort-Object -Unique) -join ', '
+        Categories= ($hitCats.ToArray()     | Sort-Object -Unique) -join ', '
       }
     }
   }
@@ -54,7 +66,6 @@ foreach ($t in $Targets) {
 
 $rows = $rows | Sort-Object Updated -Descending
 
-# Write index into RickPublic
 $idxDir = Join-Path $RickPublic "docs/intent/outreach/indexes"
 if (-not (Test-Path $idxDir)) { New-Item -ItemType Directory -Path $idxDir | Out-Null }
 $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMdd_HHmmssZ')
@@ -63,18 +74,16 @@ $md = Join-Path $idxDir ("OUTREACH_INTENT_INDEX_" + $stamp + ".md")
 $header = @"
 # Outreach/Marketing Intent Index — $stamp
 
-This file is auto-generated from multiple repos using a broad lexicon (outreach, marketing, comms, social, substack, website, pilots, products, etc.).
-Entries are sorted by **last updated**.
+Sorted by **last updated**. Auto-categorized via taxonomy.
 
-| Repo | Updated (UTC) | Tags | Path |
-|------|---------------|------|------|
+| Repo | Updated (UTC) | Categories | Tags | Path |
+|------|---------------|-----------|------|------|
 "@
 
 $lines = foreach ($r in $rows) {
   $rp = $r.Path -replace [regex]::Escape("$HOME\Documents\GitHub\"), ''
-  "| {0} | {1:u} | {2} | {3} |" -f $r.Repo, $r.Updated.ToUniversalTime(), $r.Tags, $rp
+  "| {0} | {1:u} | {2} | {3} | {4} |" -f $r.Repo, $r.Updated.ToUniversalTime(), $r.Categories, $r.Tags, $rp
 }
 
 $header + ($lines -join "`n") | Set-Content -Path $md -Encoding utf8
-
 Write-Host "Index written → $md"
