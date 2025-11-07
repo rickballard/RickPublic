@@ -1,3 +1,4 @@
 docs/outreach/inbox/*/*
 !docs/outreach/inbox/*/_surfaced/**
 !docs/outreach/inbox/**/.gitkeep
+docs/outreach/inbox/**/*.csv
