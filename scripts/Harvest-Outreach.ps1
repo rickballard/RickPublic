@@ -16,8 +16,16 @@ foreach ($zip in $zips) {
   $dst  = Join-Path $inbox $name
   if (-not (Test-Path $dst)) { New-Item -ItemType Directory -Path $dst | Out-Null }
   Expand-Archive -Path $zip.FullName -DestinationPath $dst -Force
-  # Copy any obvious outreach docs to top-level for quick scanning
-  Get-ChildItem -Path $dst -Recurse -Include *.md,*.txt | Copy-Item -Destination $dst -Force
+
+  # Surface useful docs to a dedicated subfolder, avoiding self-overwrite
+  $surf = Join-Path $dst "_surfaced"
+  if (-not (Test-Path $surf)) { New-Item -ItemType Directory -Path $surf | Out-Null }
+  Get-ChildItem -Path $dst -Recurse -Include *.md,*.txt | ForEach-Object {
+    $target = Join-Path $surf $_.Name
+    if ($_.FullName -ne $target) {
+      Copy-Item -LiteralPath $_.FullName -Destination $surf -Force -ErrorAction SilentlyContinue
+    }
+  }
 }
 
 Write-Host "Harvest complete → $inbox"
