@@ -1,0 +1,23 @@
+name: Outreach Task
+description: Personal outreach/marketing task for Rick (RickPublic scope)
+labels: ["outreach","rickpublic"]
+body:
+  - type: input
+    id: target
+    attributes: { label: Target / Audience, placeholder: "e.g., Substack post, LinkedIn, partner X" }
+    validations: { required: true }
+  - type: textarea
+    id: ask
+    attributes: { label: Ask / CTA, placeholder: "What exactly are we asking for?" }
+  - type: checkboxes
+    id: assets
+    attributes:
+      label: Assets
+      options:
+        - label: Draft copy linked
+        - label: GIF/demo available
+        - label: One-pager attached
+        - label: Compliance/guardrails checked
+  - type: textarea
+    id: notes
+    attributes: { label: Notes / Links }

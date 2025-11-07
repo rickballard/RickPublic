@@ -1,0 +1,17 @@
+{
+  "name": "AdviceBomb_CoAgent_Outreach_CLRIM",
+  "build": "20251024_124930",
+  "intended_repo": "CoAgent",
+  "entrypoint": "payload/run.ps1",
+  "payloads": [
+    "00_CoAgent_Integration",
+    "01_PizzaLunch_Primer",
+    "02_Outreach",
+    "03_Compliance_Ready",
+    "04_Brand_Assets",
+    "05_Ops_Runbooks"
+  ],
+  "notes": [
+    "Personalized to CLRIM & Darren Sissons"
+  ]
+}

@@ -1,0 +1,4 @@
+- Educational session; not investment advice.
+- No client PII requested; generic templates only.
+- Pro bono during InSeed setup.
+- Align language with CLRIM RDI/relationship‑disclosure tone.

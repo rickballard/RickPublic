@@ -1,0 +1,4 @@
+WhatsApp (paste):
+Quick 5‑minute CoCivium trial? Open this checklist and tick a box with ✏️ → Commit: 
+https://github.com/rickballard/CoContrib/blob/main/contributors/elias/ONBOARDING_CHECKLIST.md
+Then make one tiny edit in onboarding/Contributor-Guide.md and open a PR. Optional: package an AdviceBomb zip if you have an idea.
