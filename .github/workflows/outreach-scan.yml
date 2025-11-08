@@ -25,25 +25,23 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $RP = "$pwd"
-          # Harvest (will no-op if no zips on runner)
           pwsh -NoProfile -File "$RP\scripts\Harvest-Outreach.ps1"
-          # Scan (always regenerates an index)
           pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"
 
-      - name: Find latest index
+      - name: Find newest index across locations
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          $RP  = "$pwd"
-          $dir = Join-Path $RP 'docs\intent\outreach\indexes'
-          if (-not (Test-Path $dir)) { throw "Missing indexes dir: $dir" }
-          $idx = Get-ChildItem $dir -Filter 'OUTREACH_INTENT_INDEX_*.md' |
-            Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
-          if (-not $idx) { throw "No OUTREACH_INTENT_INDEX_*.md files found in $dir" }
+          $repoDir = "$pwd\docs\intent\outreach\indexes"
+          $docDir  = Join-Path $env:USERPROFILE 'Documents\GitHub\RickPublic\docs\intent\outreach\indexes'
+          $paths = @($repoDir,$docDir) | Where-Object { Test-Path $_ }
+          if(-not $paths){ throw "No index directories found." }
+          $files = foreach($p in $paths){ Get-ChildItem $p -Filter 'OUTREACH_INTENT_INDEX_*.md' -ErrorAction SilentlyContinue }
+          if(-not $files){ throw "No OUTREACH_INTENT_INDEX_*.md files found in $($paths -join '; ')" }
+          $idx = $files | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
           Write-Host "Latest index => $($idx.FullName)"
           "INDEX_PATH=$($idx.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
-          # nice run summary
-          "### Outreach scan"             | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+          "### Outreach scan" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
           "* Index:* `$(Split-Path $idx.FullName -Leaf)`" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
 
       - name: Upload index artifact
