@@ -1,0 +1,38 @@
+name: outreach-scan
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/Scan-Outreach.ps1"
+      - "scripts/Harvest-Outreach.ps1"
+      - "scripts/Quick-Outreach-Sweep.ps1"
+      - "docs/intent/outreach/**"
+      - ".github/workflows/outreach-scan.yml"
+  schedule:
+    - cron: "18 13 * * *"  # 13:18 UTC daily (08:18 Toronto)
+
+jobs:
+  scan:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Quick Sweep
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $RP = "$pwd"
+          pwsh -NoProfile -File "$RP\scripts\Harvest-Outreach.ps1"
+          pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"
+          $idx = Get-ChildItem "$RP\docs\intent\outreach\indexes" -Filter "OUTREACH_INTENT_INDEX_*.md" | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
+          Write-Host "Latest index => $($idx.FullName)"
+          "INDEX_PATH=$($idx.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
+
+      - name: Upload index artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: outreach-index
+          path: ${{ env.INDEX_PATH }}
