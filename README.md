@@ -13,3 +13,4 @@ This folder set is the **personal outreach hub** for Rick. It is **vendor-neutra
 ```powershell
 $RP = "$HOME\Documents\GitHub\RickPublic"
 pwsh -NoProfile -File "$RP\scripts\Quick-Outreach-Sweep.ps1"   # Harvest → Scan → open latest index
+![outreach-scan](https://github.com/rickballard/RickPublic/actions/workflows/outreach-scan.yml/badge.svg)
