@@ -9,3 +9,7 @@ This folder set is the **personal outreach hub** for Rick. It is **vendor-neutra
 - `docs/outreach/inbox/` — harvested AdviceBomb outreach payloads.
 
 **Outreach hub:** docs/intent/outreach/OUTREACH_STRATEGY.md
+### Outreach fast-path
+```powershell
+$RP = "$HOME\Documents\GitHub\RickPublic"
+pwsh -NoProfile -File "$RP\scripts\Quick-Outreach-Sweep.ps1"   # Harvest → Scan → open latest index
