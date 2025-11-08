@@ -7,3 +7,5 @@ docs/outreach/inbox/*/*
 !docs/outreach/inbox/**/.gitkeep
 
 *.bak
+
+docs/outreach/inbox/**/*.csv
