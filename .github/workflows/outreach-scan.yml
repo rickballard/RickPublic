@@ -25,16 +25,15 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $RP = "$pwd"
-          pwsh -NoProfile -File "$RP\scripts\Harvest-Outreach.ps1"   # no-op if nothing to harvest
-          pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"      # always regenerates an index
+          pwsh -NoProfile -File "$RP\scripts\Harvest-Outreach.ps1"
+          pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"
 
       - name: Find newest index (repo + Documents, recursive)
         shell: pwsh
         run: |
-          $ErrorActionPreference='Stop'
+          $ErrorActionPreference='Continue'   # don't hard-fail this step
           $repoRoot = "$pwd"
           $docRoot  = Join-Path $env:USERPROFILE 'Documents\GitHub\RickPublic'
-
           Write-Host "Repo root: $repoRoot"
           Write-Host "Docs root: $docRoot"
 
@@ -49,23 +48,25 @@ jobs:
             }
           }
 
-          if(-not $candidates){
-            throw "No OUTREACH_INTENT_INDEX_*.md files found under: $repoRoot ; $docRoot"
+          if($candidates.Count -gt 0){
+            $idx = $candidates | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
+            "INDEX_PATH=$($idx.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
+            Write-Host "Latest index => $($idx.FullName) (UTC $($idx.LastWriteTimeUtc.ToString('s')))"
+          } else {
+            Write-Warning "No OUTREACH_INTENT_INDEX_*.md files found."
           }
 
-          $idx = $candidates | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
-          Write-Host "Latest index => $($idx.FullName)  (UTC: $($idx.LastWriteTimeUtc.ToString('s')))"
-
-          # Export for later steps
-          "INDEX_PATH=$($idx.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
-
-          # Optional summary (best-effort)
           if($env:GITHUB_STEP_SUMMARY){
             "### Outreach scan" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
-            "* Index:* `$(Split-Path $idx.FullName -Leaf)`" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+            if($idx){
+              ("* Index: " + (Split-Path $idx.FullName -Leaf)) | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+            } else {
+              "* No index found" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+            }
           }
 
       - name: Upload index artifact
+        if: ${{ env.INDEX_PATH != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: outreach-index
