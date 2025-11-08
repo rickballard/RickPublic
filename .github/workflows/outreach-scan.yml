@@ -25,28 +25,50 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $RP = "$pwd"
-          pwsh -NoProfile -File "$RP\scripts\Harvest-Outreach.ps1"
-          pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"
+          pwsh -NoProfile -File "$RP\scripts\Harvest-Outreach.ps1"   # no-op if nothing to harvest
+          pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"      # always regenerates an index
 
-      - name: Find newest index across locations
+      - name: Find newest index (repo + Documents, recursive)
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          $repoDir = "$pwd\docs\intent\outreach\indexes"
-          $docDir  = Join-Path $env:USERPROFILE 'Documents\GitHub\RickPublic\docs\intent\outreach\indexes'
-          $paths = @($repoDir,$docDir) | Where-Object { Test-Path $_ }
-          if(-not $paths){ throw "No index directories found." }
-          $files = foreach($p in $paths){ Get-ChildItem $p -Filter 'OUTREACH_INTENT_INDEX_*.md' -ErrorAction SilentlyContinue }
-          if(-not $files){ throw "No OUTREACH_INTENT_INDEX_*.md files found in $($paths -join '; ')" }
-          $idx = $files | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
-          Write-Host "Latest index => $($idx.FullName)"
+          $repoRoot = "$pwd"
+          $docRoot  = Join-Path $env:USERPROFILE 'Documents\GitHub\RickPublic'
+
+          Write-Host "Repo root: $repoRoot"
+          Write-Host "Docs root: $docRoot"
+
+          $candidates = @()
+          foreach($root in @($repoRoot,$docRoot)){
+            if(Test-Path $root){
+              $here = Get-ChildItem -Path $root -Filter 'OUTREACH_INTENT_INDEX_*.md' -Recurse -ErrorAction SilentlyContinue
+              if($here){ $candidates += $here }
+              Write-Host ("Scanned {0} → {1} file(s)" -f $root, ($here|Measure-Object).Count)
+            } else {
+              Write-Warning "Missing root: $root"
+            }
+          }
+
+          if(-not $candidates){
+            throw "No OUTREACH_INTENT_INDEX_*.md files found under: $repoRoot ; $docRoot"
+          }
+
+          $idx = $candidates | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
+          Write-Host "Latest index => $($idx.FullName)  (UTC: $($idx.LastWriteTimeUtc.ToString('s')))"
+
+          # Export for later steps
           "INDEX_PATH=$($idx.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
-          "### Outreach scan" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
-          "* Index:* `$(Split-Path $idx.FullName -Leaf)`" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+
+          # Optional summary (best-effort)
+          if($env:GITHUB_STEP_SUMMARY){
+            "### Outreach scan" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+            "* Index:* `$(Split-Path $idx.FullName -Leaf)`" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+          }
 
       - name: Upload index artifact
         uses: actions/upload-artifact@v4
         with:
           name: outreach-index
           path: ${{ env.INDEX_PATH }}
+          if-no-files-found: error
           retention-days: 7
