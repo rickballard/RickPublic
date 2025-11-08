@@ -25,14 +25,30 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $RP = "$pwd"
+          # Harvest (will no-op if no zips on runner)
           pwsh -NoProfile -File "$RP\scripts\Harvest-Outreach.ps1"
+          # Scan (always regenerates an index)
           pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"
-          $idx = Get-ChildItem "$RP\docs\intent\outreach\indexes" -Filter "OUTREACH_INTENT_INDEX_*.md" | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
+
+      - name: Find latest index
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $RP  = "$pwd"
+          $dir = Join-Path $RP 'docs\intent\outreach\indexes'
+          if (-not (Test-Path $dir)) { throw "Missing indexes dir: $dir" }
+          $idx = Get-ChildItem $dir -Filter 'OUTREACH_INTENT_INDEX_*.md' |
+            Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
+          if (-not $idx) { throw "No OUTREACH_INTENT_INDEX_*.md files found in $dir" }
           Write-Host "Latest index => $($idx.FullName)"
           "INDEX_PATH=$($idx.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
+          # nice run summary
+          "### Outreach scan"             | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
+          "* Index:* `$(Split-Path $idx.FullName -Leaf)`" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
 
       - name: Upload index artifact
         uses: actions/upload-artifact@v4
         with:
           name: outreach-index
           path: ${{ env.INDEX_PATH }}
+          retention-days: 7
