@@ -73,3 +73,8 @@ jobs:
           path: ${{ env.INDEX_PATH }}
           if-no-files-found: error
           retention-days: 7
+permissions:
+  contents: read
+concurrency:
+  group: outreach-scan-${{ github.ref }}
+  cancel-in-progress: false
