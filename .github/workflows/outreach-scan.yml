@@ -12,9 +12,18 @@ on:
   schedule:
     - cron: "18 13 * * *"  # 13:18 UTC daily (08:18 Toronto)
 
+permissions:
+  contents: write
+
+concurrency:
+  group: outreach-scan-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   scan:
     runs-on: windows-latest
+    outputs:
+      artifact_name: ${{ steps.name.outputs.artifact_name }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,52 +38,88 @@ jobs:
           pwsh -NoProfile -File "$RP\scripts\Scan-Outreach.ps1"
 
       - name: Find newest index (repo + Documents, recursive)
+        id: find
         shell: pwsh
         run: |
-          $ErrorActionPreference='Continue'   # don't hard-fail this step
+          $ErrorActionPreference='Continue'
           $repoRoot = "$pwd"
           $docRoot  = Join-Path $env:USERPROFILE 'Documents\GitHub\RickPublic'
-          Write-Host "Repo root: $repoRoot"
-          Write-Host "Docs root: $docRoot"
-
           $candidates = @()
           foreach($root in @($repoRoot,$docRoot)){
             if(Test-Path $root){
               $here = Get-ChildItem -Path $root -Filter 'OUTREACH_INTENT_INDEX_*.md' -Recurse -ErrorAction SilentlyContinue
               if($here){ $candidates += $here }
               Write-Host ("Scanned {0} → {1} file(s)" -f $root, ($here|Measure-Object).Count)
-            } else {
-              Write-Warning "Missing root: $root"
-            }
+            } else { Write-Warning "Missing root: $root" }
           }
-
           if($candidates.Count -gt 0){
             $idx = $candidates | Sort-Object LastWriteTimeUtc -Descending | Select-Object -First 1
             "INDEX_PATH=$($idx.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding UTF8
+            "index_path=$($idx.FullName)"  | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding UTF8
             Write-Host "Latest index => $($idx.FullName) (UTC $($idx.LastWriteTimeUtc.ToString('s')))"
           } else {
             Write-Warning "No OUTREACH_INTENT_INDEX_*.md files found."
           }
-
           if($env:GITHUB_STEP_SUMMARY){
             "### Outreach scan" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
-            if($idx){
-              ("* Index: " + (Split-Path $idx.FullName -Leaf)) | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
-            } else {
-              "* No index found" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8
-            }
+            if($idx){ ("* Index: " + (Split-Path $idx.FullName -Leaf)) | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8 }
+            else     { "* No index found" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding UTF8 }
           }
 
-      - name: Upload index artifact
+      - name: Compute artifact name
+        id: name
+        shell: pwsh
+        run: |
+          $run   = "${{ github.run_id }}"
+          $att   = "${{ github.run_attempt }}"
+          $name  = "outreach-index-$run-$att"
+          "artifact_name=$name" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding UTF8
+          Write-Host "Artifact name => $name"
+
+      - name: Upload index artifact (timestamped)
         if: ${{ env.INDEX_PATH != '' }}
         uses: actions/upload-artifact@v4
         with:
-          name: outreach-index-${{ github.run_id }}-${{ github.run_attempt }}
+          name: ${{ steps.name.outputs.artifact_name }}
           path: ${{ env.INDEX_PATH }}
-          if-no-files-found: error
           retention-days: 7
-permissions:
-  contents: read
-concurrency:
-  group: outreach-scan-${{ github.ref }}
-  cancel-in-progress: false
+
+      - name: Upload index artifact (stable)
+        if: ${{ env.INDEX_PATH != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: outreach-index
+          path: ${{ env.INDEX_PATH }}
+          retention-days: 7
+
+  publish-latest:
+    needs: scan
+    if: ${{ needs.scan.outputs.artifact_name != '' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download stable artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: outreach-index
+          path: _out/index
+
+      - name: Promote to latest.md
+        run: |
+          set -euo pipefail
+          mkdir -p docs/intent/outreach/indexes
+          src="$(ls -1 _out/index/OUTREACH_INTENT_INDEX_*.md | tail -n1)"
+          cp "$src" docs/intent/outreach/indexes/latest.md
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/intent/outreach/indexes/latest.md
+          git commit -m "docs(outreach): refresh latest index" || exit 0
+          git push
