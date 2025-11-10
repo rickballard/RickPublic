@@ -24,3 +24,5 @@ Run the workflow from the **Actions** tab → download the **outreach-index** ar
 
 
 
+
+- [Operations Manual](docs/OPS_MANUAL.md)
