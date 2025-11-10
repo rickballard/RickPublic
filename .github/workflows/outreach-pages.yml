@@ -1,0 +1,35 @@
+name: outreach-pages
+on:
+workflow_dispatch:
+push:
+paths:
+- "docs/intent/outreach/indexes/latest.md"
+- ".github/workflows/outreach-pages.yml"
+
+permissions:
+contents: read
+pages: write
+id-token: write
+
+concurrency:
+group: outreach-pages-${{ github.ref }}
+cancel-in-progress: true
+
+jobs:
+publish:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v4
+with: { fetch-depth: 0 }
+- name: Prep site
+run: |
+set -euo pipefail
+mkdir -p _site
+cp docs/intent/outreach/indexes/latest.md _site/index.md
+- name: Upload artifact
+uses: actions/upload-pages-artifact@v3
+with:
+path: _site
+- name: Deploy
+id: deploy
+uses: actions/deploy-pages@v4
