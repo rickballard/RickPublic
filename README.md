@@ -26,3 +26,6 @@ Run the workflow from the **Actions** tab → download the **outreach-index** ar
 
 
 - [Operations Manual](docs/OPS_MANUAL.md)
+
+- [Outreach Index (GitHub Pages)](https://rickballard.github.io/RickPublic/)
+![outreach-pages](https://github.com/rickballard/RickPublic/actions/workflows/outreach-pages.yml/badge.svg)
