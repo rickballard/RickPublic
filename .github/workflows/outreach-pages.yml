@@ -24,7 +24,16 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Setup Pages
         uses: actions/configure-pages@v5
-            - name: Upload artifact
+                  - name: Append build fingerprint
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d _site || mkdir -p _site
+          test -f _site/index.html || { echo "<html><body><pre>No index.html built.</pre></body></html>" > _site/index.html; }
+          echo "<!-- build-fingerprint:${GITHUB_SHA:0:8}:$(date -u +%Y-%m-%dT%H:%M:%SZ) -->" >> _site/index.html
+          cp _site/index.html _site/404.html || true
+          touch _site/.nojekyll- name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with: { path: _site }
 
@@ -38,6 +47,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Show page URL
+      - name: Verify live page (fingerprint)
+        shell: bash
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          ts=$(date -u +%Y%m%d_%H%M%S)
+          url="${PAGE_URL%/}/index.html?ts=$ts"
+          echo "Fetch: $url"
+          body=$(curl -fsSL "$url")
+          if ! printf '%s' "$body" | grep -q 'build-fingerprint:'; then
+            echo "❌ fingerprint missing on live page"; exit 1
+          fi
+          echo "✅ fingerprint present"      - name: Show page URL
         run: echo "PAGE_URL=${{ steps.deployment.outputs.page_url }}"
+
 
