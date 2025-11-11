@@ -24,15 +24,7 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Build site (markdown → html)
-        run: |
-          set -euo pipefail
-          mkdir -p _site
-          npm -v >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y npm; }
-          npx -y marked -i docs/intent/outreach/indexes/latest.md -o _site/index.html
-          touch _site/.nojekyll
-          cp _site/index.html _site/404.html
-      - name: Upload artifact
+            - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with: { path: _site }
 
@@ -48,3 +40,4 @@ jobs:
         uses: actions/deploy-pages@v4
       - name: Show page URL
         run: echo "PAGE_URL=${{ steps.deployment.outputs.page_url }}"
+
