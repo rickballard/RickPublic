@@ -2,6 +2,7 @@ name: outreach-pages
 on:
   workflow_dispatch:
   push:
+    branches: [ main ]
     paths:
       - "docs/intent/outreach/indexes/latest.md"
       - ".github/workflows/outreach-pages.yml"
@@ -12,25 +13,41 @@ permissions:
   id-token: write
 
 concurrency:
-  group: outreach-pages-${{ github.ref }}
+  group: pages
   cancel-in-progress: true
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Prep site
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build site (markdown → html)
         run: |
           set -euo pipefail
           mkdir -p _site
-          cp docs/intent/outreach/indexes/latest.md _site/index.md
+          # minimal markdown → html using marked
+          npm -v >/dev/null 2>&1 || sudo apt-get update && sudo apt-get install -y npm
+          npx -y marked -i docs/intent/outreach/indexes/latest.md -o _site/index.html
+          # allow underscored paths if ever added
+          touch _site/.nojekyll
+          # basic 404 fallback
+          cp _site/index.html _site/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - name: Deploy
-        id: deploy
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
