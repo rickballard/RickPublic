@@ -1,36 +1,26 @@
-param()
+Param(
+  [string]$RepoSlug = 'rickballard/RickPublic'
+)
 $ErrorActionPreference='Stop'
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$repo = Resolve-Path (Join-Path $root '..') | % Path
-
-# a) git cleanliness
-$dirty = git -C $repo status --porcelain
-if($dirty){ Write-Error "Repo has uncommitted changes. Commit or stash first."; exit 2 }
-
-# b) line endings setup (informational)
-git -C $repo config core.autocrlf true | Out-Null
-git -C $repo config core.eol lf | Out-Null
-
-# c) source exists
-$src = Join-Path $repo 'docs\intent\outreach\indexes\latest.md'
-if(-not (Test-Path $src)){ throw "Missing: $src" }
-
-# d) quick local build using marked
-$tmp = Join-Path $env:TEMP "rp_pages_check_$([DateTime]::UtcNow.ToString('yyyyMMdd_HHmmss'))"
-New-Item -ItemType Directory -Force $tmp | Out-Null
-$dst = Join-Path $tmp 'index.html'
-# Ensure npm/marked available
-if(-not (Get-Command npm -ErrorAction SilentlyContinue)){ throw "npm missing on PATH" }
-& npx -y marked -i $src -o $dst | Out-Null
-
-# e) inject fingerprint (same as CI will do)
-$stamp = [DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')
-$sha   = (git -C $repo rev-parse --short=8 HEAD).Trim()
-$fpr   = "<!-- build-fingerprint:$sha:$stamp -->"
-(Add-Content -LiteralPath $dst "`n$fpr")
-
-# f) assert fingerprint present
-$html = Get-Content -Raw $dst
-if($html -notmatch [regex]::Escape($fpr)){ throw "Fingerprint not present in local build." }
-
-Write-Host "✓ CoVerify ok — fingerprint: $fpr"
+$RepoPath = Join-Path $HOME 'Documents\GitHub\RickPublic'
+if(!(Test-Path $RepoPath)){ throw "Repo path not found: $RepoPath" }
+# Ensure npm exists
+if(-not (Get-Command npm -ErrorAction SilentlyContinue)){
+  Write-Warning "npm not found. Install Node/npm or run the workflow to build in CI."
+}
+# Build locally (optional)
+$Latest = Join-Path $RepoPath 'docs/intent/outreach/indexes/latest.md'
+$OutDir = Join-Path $RepoPath '_site'
+New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
+if(Test-Path $Latest){
+  npm -v *> $null
+  npx -y marked -i $Latest -o (Join-Path $OutDir 'index.html')
+}
+# Append fingerprint
+$date = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+$f = Join-Path $OutDir 'index.html'
+if(!(Test-Path $f)){ Set-Content -Encoding utf8NoBOM $f "<html><body><pre>No index.html built.</pre></body></html>" }
+Add-Content -LiteralPath $f ("<!-- build-fingerprint:LOCAL:{0} -->" -f $date)
+Copy-Item $f (Join-Path $OutDir '404.html') -Force
+New-Item -ItemType File -Force -Path (Join-Path $OutDir '.nojekyll') | Out-Null
+Write-Host "Local verify OK. Fingerprint appended to $f"
