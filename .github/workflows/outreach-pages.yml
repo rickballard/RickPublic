@@ -25,10 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        with: { fetch-depth: 0 }
+
+      # Only configure/upload Pages artifacts on non-PR runs.
       - name: Setup Pages
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/configure-pages@v5
+
       - name: Build site (markdown → html)
         shell: bash
         run: |
@@ -38,6 +41,7 @@ jobs:
             sudo apt-get update && sudo apt-get install -y npm
           fi
           npx -y marked -i docs/intent/outreach/indexes/latest.md -o _site/index.html
+
       - name: Append build fingerprint
         if: always()
         shell: bash
@@ -45,28 +49,30 @@ jobs:
           set -euo pipefail
           test -d _site || mkdir -p _site
           test -f _site/index.html || { echo "<html><body><pre>No index.html built.</pre></body></html>" > _site/index.html; }
-          echo "<!-- build-fingerprint:${GITHUB_SHA:0:8}:$(date -u +%Y-%m-%dT%H:%M:%SZ) -->" >> _site/index.html
+          echo "<!-- build-fingerprint:${{ github.sha }} -->" >> _site/index.html
           cp _site/index.html _site/404.html || true
           touch _site/.nojekyll
+
       - name: Upload artifact
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
+        with: { path: _site }
 
   deploy:
+    # Single job named 'deploy' to satisfy branch protection "deploy" context.
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        if: ${{ github.event_name != 'pull_request' }}
       - name: Simulated deploy (PR)
         if: ${{ github.event_name == 'pull_request' }}
-        run: echo "Simulated deploy for PR — skipping real Pages publish."
+        run: echo "Simulated deploy for PR — no Pages publish."
+      - name: Deploy to GitHub Pages
+        if: ${{ github.event_name != 'pull_request' }}
+        id: deployment
+        uses: actions/deploy-pages@v4
       - name: Verify live page (fingerprint)
         if: ${{ github.event_name != 'pull_request' }}
         shell: bash
@@ -75,11 +81,10 @@ jobs:
         run: |
           set -euo pipefail
           ts=$(date -u +%Y%m%d_%H%M%S)
-          url="${PAGE_URL%/}/index.html?ts=$ts"
+          url="${ env.PAGE_URL }index.html?ts=$ts"
           echo "Fetch: $url"
           body=$(curl -fsSL "$url")
           if ! printf '%s' "$body" | grep -q 'build-fingerprint:'; then
             echo "❌ fingerprint missing on live page"; exit 1
           fi
           echo "✅ fingerprint present"
-
