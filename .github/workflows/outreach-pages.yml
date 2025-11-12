@@ -4,8 +4,8 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "docs/intent/outreach/indexes/latest.md"
-      - ".github/workflows/outreach-pages.yml"
+      - docs/intent/outreach/indexes/latest.md
+      - .github/workflows/outreach-pages.yml
 
 permissions:
   contents: read
@@ -21,10 +21,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+        with:
+          fetch-depth: 0
       - name: Setup Pages
         uses: actions/configure-pages@v5
-                  - name: Append build fingerprint
+      - name: Build site (markdown → html)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          if ! command -v npm >/dev/null 2>&1; then
+            sudo apt-get update && sudo apt-get install -y npm
+          fi
+          npx -y marked -i docs/intent/outreach/indexes/latest.md -o _site/index.html
+      - name: Append build fingerprint
         if: always()
         shell: bash
         run: |
@@ -33,9 +43,11 @@ jobs:
           test -f _site/index.html || { echo "<html><body><pre>No index.html built.</pre></body></html>" > _site/index.html; }
           echo "<!-- build-fingerprint:${GITHUB_SHA:0:8}:$(date -u +%Y-%m-%dT%H:%M:%SZ) -->" >> _site/index.html
           cp _site/index.html _site/404.html || true
-          touch _site/.nojekyll- name: Upload artifact
+          touch _site/.nojekyll
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with: { path: _site }
+        with:
+          path: _site
 
   deploy:
     needs: build
@@ -60,10 +72,4 @@ jobs:
           if ! printf '%s' "$body" | grep -q 'build-fingerprint:'; then
             echo "❌ fingerprint missing on live page"; exit 1
           fi
-          echo "✅ fingerprint present"      - name: Show page URL
-        run: echo "PAGE_URL=${{ steps.deployment.outputs.page_url }}"
-
-
-
-
-
+          echo "✅ fingerprint present"
