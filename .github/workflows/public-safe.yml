@@ -1,0 +1,19 @@
+name: public-safe
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for unsafe content
+        run: |
+          set -e
+          banned='(hidden agenda|manipulative|private to Pam|DiCarlo private|do not share externally|secret rationale)'
+          tokens='(ghp_|gho_|github_pat_|ghu_)'
+          if git diff --unified=0 origin/main...HEAD | egrep -i "|"; then
+            echo "::error::Public-unsafe text or token-like string found."
+            exit 1
+          fi
+          echo "Public-safe scan passed."
