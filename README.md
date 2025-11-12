@@ -1,34 +1,24 @@
-# RickPublic Outreach Staging
+# RickPublic Pages Guardrails — MegaWave AdviceBomb
 
-This folder set is the **personal outreach hub** for Rick. It is **vendor-neutral** and **future-facing** (months ahead of active campaigns).
+This bundle contains a hardened Pages workflow, local verify tools, and protection scripts.
 
-- `docs/intent/outreach/` — strategy, plans, playbooks.
-- `docs/outreach/` — channel-ready copy and assets (public-facing drafts).
-- `docs/intent/outreach/products/` — product-specific staging (CoArena, RepoZipper).
-- `docs/intent/outreach/inseed/` & `copolitic/` — *staging only* for those orgs; final integration happens in their repos later.
-- `docs/outreach/inbox/` — harvested AdviceBomb outreach payloads.
+## Files
+- `.github/workflows/outreach-pages.yml` — PR-safe deploy with live fingerprint verify
+- `tools/CoVerify-Pages.ps1` — local build + fingerprint append (optional)
+- `tools/Set-PagesProtections.ps1` — set branch protection & env policy via `gh api`
+- `docs/intent/advice/notes/20251112/CoSync_TEMPLATE.md` — session plan & sweep template
+- `checks/*.example.json` — expected snapshots
 
-**Outreach hub:** docs/intent/outreach/OUTREACH_STRATEGY.md
-### Outreach fast-path
+## Quick use (on your repo clone)
 ```powershell
-$RP = "$HOME\Documents\GitHub\RickPublic"
-pwsh -NoProfile -File "$RP\scripts\Quick-Outreach-Sweep.ps1"   # Harvest → Scan → open latest index
-![outreach-scan](https://github.com/rickballard/RickPublic/actions/workflows/outreach-scan.yml/badge.svg)
+$RepoPath = "$HOME\Documents\GitHub\RickPublic"
+Expand-Archive -Path .\AdviceBomb_RickPublic_PagesGuard_20251112_145129Z.zip -DestinationPath $RepoPath -Force
 
-**Latest outreach index**  
-Run the workflow from the **Actions** tab → download the **outreach-index** artifact from the most recent successful run.
+# Commit the workflow (adjust branch as needed)
+git -C $RepoPath add .github/workflows/outreach-pages.yml
+git -C $RepoPath commit -m "ci(pages): hardened workflow (PR-safe deploy + fingerprint verify)"
+git -C $RepoPath push -u origin <your-branch>
 
-
-
-
-
-
-
-
-- [Operations Manual](docs/OPS_MANUAL.md)
-
-- [Outreach Index (GitHub Pages)](https://rickballard.github.io/RickPublic/)
-![outreach-pages](https://github.com/rickballard/RickPublic/actions/workflows/outreach-pages.yml/badge.svg)
-
-[![outreach-pages](https://github.com/rickballard/RickPublic/actions/workflows/outreach-pages.yml/badge.svg)](https://github.com/rickballard/RickPublic/actions/workflows/outreach-pages.yml)
-
+# Set protections (requires gh with 'repo' scope; 'workflow' scope not needed for API)
+pwsh -File "$RepoPath\tools\Set-PagesProtections.ps1" -RepoSlug 'rickballard/RickPublic'
+```
