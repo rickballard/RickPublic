@@ -6,6 +6,10 @@ on:
     paths:
       - docs/intent/outreach/indexes/latest.md
       - .github/workflows/outreach-pages.yml
+  pull_request:
+    paths:
+      - docs/intent/outreach/indexes/latest.md
+      - .github/workflows/outreach-pages.yml
 
 permissions:
   contents: read
@@ -59,7 +63,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        if: ${{ github.event_name != 'pull_request' }}
+      - name: Simulated deploy (PR)
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo "Simulated deploy for PR — skipping real Pages publish."
       - name: Verify live page (fingerprint)
+        if: ${{ github.event_name != 'pull_request' }}
         shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
@@ -73,3 +82,4 @@ jobs:
             echo "❌ fingerprint missing on live page"; exit 1
           fi
           echo "✅ fingerprint present"
+
