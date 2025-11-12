@@ -82,3 +82,4 @@ jobs:
             echo "❌ fingerprint missing on live page"; exit 1
           fi
           echo "✅ fingerprint present"
+
