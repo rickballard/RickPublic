@@ -6,72 +6,6 @@ on:
     paths:
       - docs/intent/outreach/indexes/latest.md
       - .github/workflows/outreach-pages.yml
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build site (markdown → html)
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p _site
-          if ! command -v npm >/dev/null 2>&1; then
-            sudo apt-get update && sudo apt-get install -y npm
-          fi
-          npx -y marked -i docs/intent/outreach/indexes/latest.md -o _site/index.html
-      - name: Append build fingerprint
-        if: always()
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -d _site || mkdir -p _site
-          test -f _site/index.html || { echo "<html><body><pre>No index.html built.</pre></body></html>" > _site/index.html; }
-          echo "<!-- build-fingerprint:${GITHUB_SHA:0:8}:$(date -u +%Y-%m-%dT%H:%M:%SZ) -->" >> _site/index.html
-          cp _site/index.html _site/404.html || true
-          touch _site/.nojekyll
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      
-        if: ${{ github.event_name != 'pull_request' }}
-      
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
-        run: |
-          set -euo pipefail
-          ts=$(date -u +%Y%m%d_%H%M%S)
-          url="${PAGE_URL%/}/index.html?ts=$ts"
-          echo "Fetch: $url"
-          body=$(curl -fsSL "$url")
-          if ! printf '%s' "$body" | grep -q 'build-fingerprint:'; then
-            echo "❌ fingerprint missing on live page"; exit 1
-          fi
-          echo "✅ fingerprint present"
   pull_request:
     paths:
       - docs/intent/outreach/indexes/latest.md
@@ -126,10 +60,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
         if: ${{ github.event_name != 'pull_request' }}
-      
+      - name: Simulated deploy (PR)
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo "Simulated deploy for PR — skipping real Pages publish."
+      - name: Verify live page (fingerprint)
         if: ${{ github.event_name != 'pull_request' }}
+        shell: bash
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
@@ -142,77 +82,3 @@ jobs:
             echo "❌ fingerprint missing on live page"; exit 1
           fi
           echo "✅ fingerprint present"
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-    paths:
-      - docs/intent/outreach/indexes/latest.md
-      - .github/workflows/outreach-pages.yml
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build site (markdown → html)
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p _site
-          if ! command -v npm >/dev/null 2>&1; then
-            sudo apt-get update && sudo apt-get install -y npm
-          fi
-          npx -y marked -i docs/intent/outreach/indexes/latest.md -o _site/index.html
-      - name: Append build fingerprint
-        if: always()
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -d _site || mkdir -p _site
-          test -f _site/index.html || { echo "<html><body><pre>No index.html built.</pre></body></html>" > _site/index.html; }
-          echo "<!-- build-fingerprint:${GITHUB_SHA:0:8}:$(date -u +%Y-%m-%dT%H:%M:%SZ) -->" >> _site/index.html
-          cp _site/index.html _site/404.html || true
-          touch _site/.nojekyll
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      
-        if: ${{ github.event_name != 'pull_request' }}
-      
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
-        run: |
-          set -euo pipefail
-          ts=$(date -u +%Y%m%d_%H%M%S)
-          url="${PAGE_URL%/}/index.html?ts=$ts"
-          echo "Fetch: $url"
-          body=$(curl -fsSL "$url")
-          if ! printf '%s' "$body" | grep -q 'build-fingerprint:'; then
-            echo "❌ fingerprint missing on live page"; exit 1
-          fi
-          echo "✅ fingerprint present"
-
-
