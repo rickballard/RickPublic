@@ -17,9 +17,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -88,3 +87,4 @@ jobs:
             echo "❌ fingerprint missing on live page"; exit 1
           fi
           echo "✅ fingerprint present"
+
