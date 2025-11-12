@@ -56,11 +56,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-      - name: Verify live page (fingerprint)
-        shell: bash
+      
+        if: ${{ github.event_name != 'pull_request' }}
+      
+        if: ${{ github.event_name != 'pull_request' }}
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
@@ -127,11 +126,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-      - name: Verify live page (fingerprint)
-        shell: bash
+      
+        if: ${{ github.event_name != 'pull_request' }}
+      
+        if: ${{ github.event_name != 'pull_request' }}
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
@@ -200,11 +198,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-      - name: Verify live page (fingerprint)
-        shell: bash
+      
+        if: ${{ github.event_name != 'pull_request' }}
+      
+        if: ${{ github.event_name != 'pull_request' }}
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
@@ -217,4 +214,5 @@ jobs:
             echo "❌ fingerprint missing on live page"; exit 1
           fi
           echo "✅ fingerprint present"
+
 
