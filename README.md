@@ -22,3 +22,9 @@ git -C $RepoPath push -u origin <your-branch>
 # Set protections (requires gh with 'repo' scope; 'workflow' scope not needed for API)
 pwsh -File "$RepoPath\tools\Set-PagesProtections.ps1" -RepoSlug 'rickballard/RickPublic'
 ```
+
+## Status
+
+- Nightly status: [docs/status/Nightly.md](docs/status/Nightly.md)
+- CoSync receipts (latest): see docs/intent/advice/notes/
+
