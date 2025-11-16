@@ -28,3 +28,7 @@ pwsh -File "$RepoPath\tools\Set-PagesProtections.ps1" -RepoSlug 'rickballard/Ric
 - Nightly status: [docs/status/Nightly.md](docs/status/Nightly.md)
 - CoSync receipts (latest): see docs/intent/advice/notes/
 
+
+## Status
+[![nightly-costatus](https://github.com/rickballard/RickPublic/actions/workflows/nightly-costatus.yml/badge.svg)](https://github.com/rickballard/RickPublic/actions/workflows/nightly-costatus.yml)
+
