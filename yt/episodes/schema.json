@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "YT Episode",
+  "type": "object",
+  "required": ["id","date","type","title","beats","disclosure","cta"],
+  "properties": {
+    "id": {"type":"string"},
+    "date": {"type":"string","format":"date"},
+    "type": {"enum": ["news","investor_brief"]},
+    "title": {"type":"string"},
+    "thumbnail_text": {"type":"string"},
+    "beats": {"type":"array","items":{"type":"string"}},
+    "tickers": {"type":"array","items":{"type":"string"}},
+    "disclosure": {"type":"string"},
+    "cta": {"type":"string"}
+  }
+}

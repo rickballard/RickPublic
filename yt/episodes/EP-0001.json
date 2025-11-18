@@ -1,0 +1,16 @@
+{
+  "id": "EP-0001",
+  "date": "2025-11-17",
+  "type": "news",
+  "title": "Today’s AI and Markets in 90 seconds",
+  "thumbnail_text": "AI + Markets: Fast Brief",
+  "beats": [
+    "Top AI policy headline",
+    "Markets pulse, 2 stats",
+    "One investable theme",
+    "What to watch tomorrow"
+  ],
+  "tickers": ["SPY","QQQ","NVDA","BTC-USD"],
+  "disclosure": "Synthetic presenter inspired by Darren S., used with permission. Not financial advice.",
+  "cta": "Subscribe on Substack for the full brief and sources."
+}
