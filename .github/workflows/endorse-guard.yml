@@ -1,0 +1,41 @@
+name: endorse-guard
+on:
+  pull_request:
+    paths:
+      - "docs/endorse/**"
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PowerShell
+        uses: PowerShell/PowerShell@v1
+        with:
+          version: "7.4.x"
+      - name: Validate index + scan contacts
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $idx = "docs/endorse/outreach/endorse/ENDORSE_INDEX.yml"
+          if(!(Test-Path $idx)){ throw "Missing $idx" }
+          # Parse YAML (PowerShell 7 has ConvertFrom-Yaml)
+          $y = Get-Content $idx -Raw | ConvertFrom-Yaml
+          if(-not $y){ throw "Failed to parse $idx" }
+
+          $patterns = @(
+            'contact@InSeed\.com',
+            '\+?1?[\.\s-]*416[\.\s-]*414[\.\s-]*8100',
+            'Lakeshore\s+Rd',
+            'Mississauga',
+            '\bRick\s+Ballard\b'
+          )
+          $hits = Select-String -Path "docs/endorse/**/*.*" -Pattern $patterns -SimpleMatch:$false -Encoding UTF8 -ErrorAction SilentlyContinue
+          if($hits){
+            Write-Host "::error::Personal contact strings found:" -ForegroundColor Red
+            $hits | ForEach-Object { Write-Host "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+            exit 2
+          } else {
+            Write-Host "No personal contact strings found. ✅"
+          }
