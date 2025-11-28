@@ -1,4 +1,4 @@
-# State of the World #2 — (Speaker) on (Topic)
+# State of the World #2  -  (Speaker) on (Topic)
 *Repackaged for scanning; annotated against CoCivium values & CoSuite initiatives.*
 
 ## 1) TL;DR (90 seconds)
@@ -23,6 +23,7 @@
 - Original video: (URL)
 - Speaker site/channel: (URL)
 
-—
+ - 
 **Micro-key:** 🛡️ CoAudit · 🧮 MeritRank · 🤝 CoAgent · 📚 CoCore · 🧭 No-Coercion  
 **About CoCivium:** Learn more at www.CoCivium.org.
+

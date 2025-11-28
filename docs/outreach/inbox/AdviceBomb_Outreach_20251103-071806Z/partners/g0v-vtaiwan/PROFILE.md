@@ -1,4 +1,4 @@
-# g0v / vTaiwan community — Dossier
+# g0v / vTaiwan community  -  Dossier
 
 **GitHub org/repo:** g0v/*
 
@@ -29,3 +29,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 - https://info.vtaiwan.tw/
 - https://join.g0v.tw/
 - https://g0v.network/join/
+

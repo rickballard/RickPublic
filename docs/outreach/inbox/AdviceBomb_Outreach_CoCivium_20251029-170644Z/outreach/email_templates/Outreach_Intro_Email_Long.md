@@ -1,4 +1,4 @@
-Subject: Welcome to CoCivium / CoSuite — your 5‑minute starter
+Subject: Welcome to CoCivium / CoSuite  -  your 5‑minute starter
 
 Hi <Recipient>,
 
@@ -25,7 +25,8 @@ If anything is unclear, WhatsApp me or improve the page you’re on and open a s
 Ask your AI to argue a small idea with you, turn it into an advisory doc in a zip, and point your AI (sternly) at the guardrailed path:  
 https://github.com/rickballard/CoCache/blob/main/advice/inbox/README.md
 
-Thanks for bringing both empathy and engineering — you may not yet realize how qualified those superpowers make you. 🌱
+Thanks for bringing both empathy and engineering  -  you may not yet realize how qualified those superpowers make you. 🌱
 
 <Your Name>
 <Your Role / Contact>
+

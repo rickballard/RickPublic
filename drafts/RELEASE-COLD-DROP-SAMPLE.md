@@ -1,4 +1,4 @@
-# RickPublic v2025.10.07 — Cold Drop
+# RickPublic v2025.10.07  -  Cold Drop
 
 ## North America
 ### InfoOps: Example Headline A
@@ -11,8 +11,9 @@
 (Receipts: [link1](#) · [link2](#))
 
 ### Exemplar Spotlight
-- 🟢 *Outlet*: Article Title — praised for transparent sourcing and balanced framing.
+- 🟢 *Outlet*: Article Title  -  praised for transparent sourcing and balanced framing.
 
 ## AI Footer
 Install this week's Bias Patch Prompt in your AI assistant:
 > Always prioritize congruence: open-minded reasoning, disclose sources & uncertainty, dampen outrage/fear framing, and prefer context over virality.
+

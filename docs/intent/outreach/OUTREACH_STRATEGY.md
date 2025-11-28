@@ -1,4 +1,4 @@
-# Outreach Strategy (Cumulative) — RickPublic
+# Outreach Strategy (Cumulative)  -  RickPublic
 
 **Purpose:** make Rick’s outreach/marketing easy, fast, and low‑overhead. This doc is the live, cumulative strategy for personal outreach (not org‑wide).
 
@@ -19,16 +19,16 @@
 - Angel/philanthropic sponsors who value open guardrails.
 
 ## 4) Messaging pillars
-1. **Edge‑owned guardrails**: explain, object, rollback — with transparent evidence.
+1. **Edge‑owned guardrails**: explain, object, rollback  -  with transparent evidence.
 2. **Vendor‑neutral trust**: independent layer complements (not competes with) existing assistants.
 3. **Open co‑evolution**: auditable patterns anyone can adopt; community momentum over lock‑in.
 
 ## 5) Channels (owned > earned > paid)
-- **Substack (RickPublic)** — cornerstone essays & progress notes.
-- **GitHub** — releases, READMEs, Discussions; outreach packs as Releases.
-- **LinkedIn** — calls‑for‑pilots, co‑dev notes, short clips.
-- **Email** — concise pilot asks; personal updates.
-- **X/Twitter** — lightweight updates; pointers to Substack/GitHub.
+- **Substack (RickPublic)**  -  cornerstone essays & progress notes.
+- **GitHub**  -  releases, READMEs, Discussions; outreach packs as Releases.
+- **LinkedIn**  -  calls‑for‑pilots, co‑dev notes, short clips.
+- **Email**  -  concise pilot asks; personal updates.
+- **X/Twitter**  -  lightweight updates; pointers to Substack/GitHub.
 - (Optional later) YouTube demo shorts; podcasts.
 
 ## 6) Content plan (drip‑feed, 6–10 items)
@@ -54,3 +54,4 @@
 ---
 **This doc is the single source of truth for Rick’s personal outreach.**
 > Latest Intent Index: [OUTREACH_INTENT_INDEX_20251107_202918Z.md](../outreach/indexes/OUTREACH_INTENT_INDEX_20251107_202918Z.md)
+

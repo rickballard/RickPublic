@@ -1,4 +1,4 @@
-# mySociety (incl. FixMyStreet, TheyWorkForYou) — Dossier
+# mySociety (incl. FixMyStreet, TheyWorkForYou)  -  Dossier
 
 **GitHub org/repo:** mysociety/*
 
@@ -27,3 +27,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 - https://github.com/mysociety
 - https://www.mysociety.org/
 - https://www.mysociety.org/about/team/
+

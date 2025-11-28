@@ -1,4 +1,4 @@
-# 2‑Page Pilot Brief — Edge‑Owned Guardrails (Template)
+# 2‑Page Pilot Brief  -  Edge‑Owned Guardrails (Template)
 
 **Scope (60 days):**
 - Integrate guardrail patterns into 1–2 assistant flows.
@@ -12,3 +12,4 @@
 
 **Boundaries:**
 - Non‑exclusive; non‑assert on core; data boundaries clarified; trademark retained.
+

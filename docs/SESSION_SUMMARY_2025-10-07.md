@@ -1,4 +1,4 @@
-# Session Summary — RickPublic / WisdomOps — 2025-10-07
+# Session Summary  -  RickPublic / WisdomOps  -  2025-10-07
 
 This document captures everything from the session so nothing is lost outside chat history.
 
@@ -25,7 +25,7 @@ This document captures everything from the session so nothing is lost outside ch
 - **Ethics** (fairness, privacy, manipulation level).
 
 ### Exemplars (praise references)
-- Promote media exemplars that model good practice—even if we disagree with conclusions.
+- Promote media exemplars that model good practice - even if we disagree with conclusions.
 - Exemplar callouts are brief, with links and a one‑line “why respected”.
 
 ### Reader co‑evolution
@@ -129,3 +129,4 @@ sources/
 - Add wisdom score telemetry (private) and reader feedback micro‑form.
 - Extend exemplar rules and bias legend as JSON schemas.
 - Consider white/dark site themes and automatic halo selection.
+

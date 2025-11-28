@@ -1,7 +1,7 @@
-# State of the World #1 — Jeffrey D. Sachs on great-power policy risk
+# State of the World #1  -  Jeffrey D. Sachs on great-power policy risk
 *Repackaged for scanning; annotated against CoCivium values & CoSuite initiatives.*
 
-**Original:** “I Warned About This…” — Jeffrey D. Sachs  
+**Original:** “I Warned About This…”  -  Jeffrey D. Sachs  
 **Watch first:** https://www.youtube.com/watch?v=GQFfCRrKz3Y
 
 ## 1) TL;DR (90 seconds)
@@ -26,7 +26,7 @@
 - **[MM:SS] Forward risk:** AI + misinformation + hair-trigger politics = **reduced decision slack**.  
   **Why it matters:** agent sandboxing, audit trails, and human-in-the-loop controls become table stakes. {badges: 🤝 🛡️}
 
-> **Quoted (short, fair-use):** “{≤2 sentences verbatim from transcript}.” — [~MM:SS](https://www.youtube.com/watch?v=GQFfCRrKz3Y)
+> **Quoted (short, fair-use):** “{≤2 sentences verbatim from transcript}.”  -  [~MM:SS](https://www.youtube.com/watch?v=GQFfCRrKz3Y)
 
 ## 3) Our commentary (editorial)
 - **Agreement:** public-interest policy should publish its **evidence chain** (data → modeling choices → counterfactuals → predicted externalities) for reproducibility.  
@@ -50,8 +50,9 @@
 - Speaker site/channel: {add if you wish}  
 - Background: {add neutral references if you cite specifics}
 
-—
+ - 
 **Sources & Rights:** All rights to original content remain with their respective owners. Embedded video and brief excerpts are used for commentary/education.  
 **About CoCivium:** Learn more at www.CoCivium.org.
+
 
 

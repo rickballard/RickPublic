@@ -1,4 +1,4 @@
-# RickPublic — Operations Manual
+# RickPublic  -  Operations Manual
 
 **Repo-first.** Helpers live in-repo. Local is staging only.
 
@@ -13,3 +13,4 @@ pwsh -NoProfile -File "$RP\scripts\Download-LatestOutreachIndex.ps1"
 Receipts (optional)
 
 Run your Rescue wave with -CommitReceipt to open a tiny PR recording the run.
+

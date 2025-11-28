@@ -8,4 +8,5 @@ We’re building CoSuite/CoAgent: a transparent, **vendor‑neutral guardrailer*
 • Zip‑first: https://github.com/rickballard/CoContrib/blob/main/training/README.md  
 • Inbox guide: https://github.com/rickballard/CoCache/blob/main/advice/inbox/README.md
 
-— <Your Name>
+ -  <Your Name>
+

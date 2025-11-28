@@ -1,4 +1,4 @@
-# RickPublic — Emergency Handoff (updated 2025-10-24)
+# RickPublic  -  Emergency Handoff (updated 2025-10-24)
 
 Single entrypoint for CoPrime. Repo is stage-only (no auto-publish). Cadence is repo/CoCache-driven.
 
@@ -19,3 +19,4 @@ Open next (in handoff/):
 06-NEXT-3-WEEKS.md
 00-SESSION-TIMELINE.md
 99-META-POINTERS.txt
+

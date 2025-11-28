@@ -1,4 +1,4 @@
-# Democracy Earth Foundation — Dossier
+# Democracy Earth Foundation  -  Dossier
 
 **GitHub org/repo:** DemocracyEarth/*
 
@@ -26,3 +26,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 ## Useful links
 - https://github.com/DemocracyEarth
 - https://democracy.earth/
+

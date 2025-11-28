@@ -1,4 +1,4 @@
-# Open States (Plural) — Dossier
+# Open States (Plural)  -  Dossier
 
 **GitHub org/repo:** openstates/*
 
@@ -26,3 +26,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 ## Useful links
 - https://github.com/openstates
 - https://docs.openstates.org/
+

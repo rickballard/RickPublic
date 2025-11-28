@@ -1,4 +1,4 @@
-# Pol.is / The Computational Democracy Project — Dossier
+# Pol.is / The Computational Democracy Project  -  Dossier
 
 **GitHub org/repo:** compdemocracy/*
 
@@ -29,3 +29,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 - https://compdemocracy.org/
 - https://pol.is/home
 - https://compdemocracy.org/contact/
+

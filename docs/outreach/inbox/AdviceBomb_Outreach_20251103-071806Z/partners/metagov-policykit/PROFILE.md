@@ -1,4 +1,4 @@
-# Metagov / PolicyKit — Dossier
+# Metagov / PolicyKit  -  Dossier
 
 **GitHub org/repo:** metagov/*, policykit/policykit
 
@@ -28,3 +28,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 - https://github.com/policykit/policykit
 - https://github.com/metagov
 - https://metagov.org/projects/policykit
+

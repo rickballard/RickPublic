@@ -1,4 +1,4 @@
-# Outreach/Marketing Intent Index — 20251107_201116Z
+# Outreach/Marketing Intent Index  -  20251107_201116Z
 
 This file is auto-generated from multiple repos using a broad lexicon (outreach, marketing, comms, social, substack, website, pilots, products, etc.).
 Entries are sorted by **last updated**.
@@ -3687,3 +3687,4 @@ Entries are sorted by **last updated**.
 | CoCivium | 2025-10-06 00:42:42Z | PR | CoCivium\.admin-backup\branch_protection_restore.json |
 | CoPolitic | 2025-09-26 23:18:26Z | agent, x | CoPolitic\robots.txt |
 | CoPolitic | 2025-09-23 17:35:33Z | x | CoPolitic\.well-known\security.txt |
+

@@ -1,4 +1,4 @@
-# CoSync — RickPublic Pages Guardrails / Session Plan
+# CoSync  -  RickPublic Pages Guardrails / Session Plan
 
 - when: 20251112_145129Z
 - entrypoint: docs/intent/outreach/indexes/latest.md
@@ -12,8 +12,9 @@
 5. Append Dialogue Sweep + Protections snapshot after changes.
 
 ---
-## Dialogue Sweep — TEMPLATE
+## Dialogue Sweep  -  TEMPLATE
 - What happened: …
 - Key runs: …
 - PRs: …
 - CoBloat heartbeat: CU=?, PU=?, HU=?, WT=?
+

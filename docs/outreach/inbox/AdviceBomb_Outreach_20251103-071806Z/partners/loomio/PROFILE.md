@@ -1,4 +1,4 @@
-# Loomio Cooperative — Dossier
+# Loomio Cooperative  -  Dossier
 
 **GitHub org/repo:** loomio/loomio
 
@@ -28,3 +28,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 - https://github.com/loomio/loomio
 - https://www.loomio.com/community
 - https://richdecibels.com/
+

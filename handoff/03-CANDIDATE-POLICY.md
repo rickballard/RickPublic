@@ -1,4 +1,4 @@
-# 03 — Candidate Policy (working)
+# 03  -  Candidate Policy (working)
 
 Candidate = recent, substantive talk aligned with:
 🛡️ CoAudit · 🧮 MeritRank · 🤝 CoAgent · 📚 CoCore · 🧭 No-Coercion.
@@ -13,3 +13,4 @@ Human pass:
 - From 4–6 proposed → pick 2–3
 - Curate clean highlight paragraphs (no timestamps)
 - Inline badge icons; footer micro-key
+

@@ -1,4 +1,4 @@
-# 02 — Operations Runbook
+# 02  -  Operations Runbook
 
 Refresh candidates + write outbox draft:
 pwsh -NoProfile -ExecutionPolicy Bypass -File .\tools\Run-Candidates-And-Commit.ps1
@@ -11,3 +11,4 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File .\tools\Get-Transcript.ps1 -Url <Y
 
 Tune search config:
 edit .\tools\candidates.config.json
+

@@ -1,4 +1,4 @@
-# Gov4Git Foundation — Dossier
+# Gov4Git Foundation  -  Dossier
 
 **GitHub org/repo:** gov4git/*
 
@@ -28,3 +28,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 - https://github.com/gov4git
 - https://github.com/gov4git/gov4git
 - https://medium.com/@gov4git
+

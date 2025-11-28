@@ -1,4 +1,4 @@
-# Outreach/Marketing Intent Index — 20251107_204622Z
+# Outreach/Marketing Intent Index  -  20251107_204622Z
 
 Sorted by **last updated**. Auto-categorized via taxonomy.
 
@@ -3779,3 +3779,4 @@ Sorted by **last updated**. Auto-categorized via taxonomy.
 | CoCivium | 2025-10-06 00:42:42Z | Launch/Pilot | PR | CoCivium\.admin-backup\branch_protection_restore.json |
 | CoPolitic | 2025-09-26 23:18:26Z | Product, Social | agent, x | CoPolitic\robots.txt |
 | CoPolitic | 2025-09-23 17:35:33Z | Social | x | CoPolitic\.well-known\security.txt |
+

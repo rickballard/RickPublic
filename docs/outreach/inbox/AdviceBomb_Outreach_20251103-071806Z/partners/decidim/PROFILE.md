@@ -1,4 +1,4 @@
-# Decidim (Decidim Free Software Association) — Dossier
+# Decidim (Decidim Free Software Association)  -  Dossier
 
 **GitHub org/repo:** decidim/decidim
 
@@ -30,3 +30,4 @@ See `/templates/ISSUE_TEMPLATE.md` for a richer scaffold.
 - https://meta.decidim.org/assemblies/the-association?locale=en
 - https://decidim.org/faqs/
 - https://decidim.org/ca/partnership-policy/
+

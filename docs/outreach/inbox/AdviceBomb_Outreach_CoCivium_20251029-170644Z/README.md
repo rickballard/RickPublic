@@ -16,23 +16,23 @@
    .\tools\Verify-AdviceBomb.ps1
    ```
 4) **Pick a repo landing** (recommendations below) and commit via a short branch → PR → squash-merge:
-   - `rickballard/CoContrib/outreach/` — **primary** for contributor-facing collateral
-   - `rickballard/CoCache/advice/seeds/` — if publishing as a seed AdviceBomb for broader reuse
-   - `rickballard/CoAgent/docs/outreach/` — if aligning with CoAgent guardrailer demos
+   - `rickballard/CoContrib/outreach/`  -  **primary** for contributor-facing collateral
+   - `rickballard/CoCache/advice/seeds/`  -  if publishing as a seed AdviceBomb for broader reuse
+   - `rickballard/CoAgent/docs/outreach/`  -  if aligning with CoAgent guardrailer demos
 5) **Open a tiny docs PR** and include the **Outreach_Intro_Email.md** as the email body template.  
 6) **(Optional)** Wrap as a formal inbox AdviceBomb for CoCache’s `advice/inbox` using the manifest + checksum.
 
 ## Contents
-- `outreach/README.md` — outreach flow + roles
-- `outreach/email_templates/` — ready-to-send emails (short/long; sector variants)
-- `outreach/snippets/` — WhatsApp / DM / PR body snippets
-- `outreach/targets/outreach_targets.csv` — simple target list
-- `scripts/Publish-OutreachPack.ps1` — paste-safe PR helper (no AddRange, minimal args)
-- `tools/Verify-AdviceBomb.ps1` — lightweight checksum & shape check
-- `_copayload.meta.json` — machine-readable manifest (topic, shas, pointers)
-- `_wrap.manifest.json` — zip-first wrapper manifest
-- `INBOX_LOG_row_template.md` — one-line append template when logging into CoCache
-- `OUTREACH_CHECKLIST.md` — step-by-step “5 minute” path and beyond
+- `outreach/README.md`  -  outreach flow + roles
+- `outreach/email_templates/`  -  ready-to-send emails (short/long; sector variants)
+- `outreach/snippets/`  -  WhatsApp / DM / PR body snippets
+- `outreach/targets/outreach_targets.csv`  -  simple target list
+- `scripts/Publish-OutreachPack.ps1`  -  paste-safe PR helper (no AddRange, minimal args)
+- `tools/Verify-AdviceBomb.ps1`  -  lightweight checksum & shape check
+- `_copayload.meta.json`  -  machine-readable manifest (topic, shas, pointers)
+- `_wrap.manifest.json`  -  zip-first wrapper manifest
+- `INBOX_LOG_row_template.md`  -  one-line append template when logging into CoCache
+- `OUTREACH_CHECKLIST.md`  -  step-by-step “5 minute” path and beyond
 
 ## Suggested landing path (repo-first)
 - **Preferred:** `rickballard/CoContrib/outreach/20251029-170644Z/...` (then refactor to stable paths on merge)
@@ -51,3 +51,4 @@
 
 ## Trail
 Always leave one: add a CoSync note under `docs/intent/advice/notes/YYYYMMDD/CoSync_<UTCSTAMP>.md` in a relevant repo with: pointers, landing paths, INBOX_LOG tail, open PRs, next steps.
+
