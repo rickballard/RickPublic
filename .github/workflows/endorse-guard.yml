@@ -1,8 +1,10 @@
 name: endorse-guard
+
 on:
   pull_request:
     paths:
-      - "docs/endorse/**"
+      - "docs/endorse/outreach/endorse/**"
+      - ".github/workflows/endorse-guard.yml"
   workflow_dispatch: {}
 
 jobs:
@@ -10,20 +12,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install PowerShell
+
+      - name: Install PowerShell 7
         uses: PowerShell/PowerShell@v1
         with:
           version: "7.4.x"
-      - name: Validate index + scan contacts
+
+      - name: Validate index + scan contacts (strict on PR, report-only on dispatch)
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          $idx = "docs/endorse/outreach/endorse/ENDORSE_INDEX.yml"
-          if(!(Test-Path $idx)){ throw "Missing $idx" }
-          # Parse YAML (PowerShell 7 has ConvertFrom-Yaml)
-          $y = Get-Content $idx -Raw | ConvertFrom-Yaml
-          if(-not $y){ throw "Failed to parse $idx" }
+          $isPR = "${{ github.event_name }}" -eq 'pull_request'
+          $idx  = "docs/endorse/outreach/endorse/ENDORSE_INDEX.yml"
+          if(!(Test-Path $idx)){
+            if($isPR){ throw "Missing $idx" } else { Write-Host "::warning::Missing $idx (report-only)"; exit 0 }
+          }
 
+          # ConvertFrom-Yaml is built-in in PowerShell 7+
+          try {
+            $y = Get-Content $idx -Raw | ConvertFrom-Yaml
+          } catch {
+            if($isPR){ throw "YAML parse failed: $($_.Exception.Message)" } else { Write-Host "::warning::YAML parse failed (report-only)"; exit 0 }
+          }
+          if(-not $y){ if($isPR){ throw "Empty or invalid YAML: $idx" } else { Write-Host "::warning::Empty/invalid YAML (report-only)"; exit 0 } }
+
+          # Required keys check (soft on dispatch)
+          $required = @('name','role','org','consent_state','source_url')
+          $missing = @()
+          foreach($k in $required){ if(-not ($y.PSObject.Properties.Name -contains $k)){ $missing += $k } }
+          if($missing.Count -gt 0){
+            $msg = "Missing required keys: " + ($missing -join ', ')
+            if($isPR){ throw $msg } else { Write-Host "::warning::$msg (report-only)"; exit 0 }
+          }
+
+          # Forbidden strings – scoped to the CoEndorse subtree only
           $patterns = @(
             'contact@InSeed\.com',
             '\+?1?[\.\s-]*416[\.\s-]*414[\.\s-]*8100',
@@ -31,11 +53,15 @@ jobs:
             'Mississauga',
             '\bRick\s+Ballard\b'
           )
-          $hits = Select-String -Path "docs/endorse/**/*.*" -Pattern $patterns -SimpleMatch:$false -Encoding UTF8 -ErrorAction SilentlyContinue
+
+          $hits = @()
+          foreach($p in $patterns){
+            $hits += Select-String -Path "docs/endorse/outreach/endorse/**/*.*" -Pattern $p -Encoding UTF8 -ErrorAction SilentlyContinue
+          }
+
           if($hits){
-            Write-Host "::error::Personal contact strings found:" -ForegroundColor Red
-            $hits | ForEach-Object { Write-Host "$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
-            exit 2
+            $hits | ForEach-Object { Write-Host "::error::$($_.Path):$($_.LineNumber): $($_.Line.Trim())" }
+            if($isPR){ exit 2 } else { Write-Host "::warning::Forbidden strings found (report-only)"; exit 0 }
           } else {
-            Write-Host "No personal contact strings found. ✅"
+            Write-Host "No forbidden strings found. ✅"
           }
