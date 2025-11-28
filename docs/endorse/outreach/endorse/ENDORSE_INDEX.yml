@@ -1,0 +1,13 @@
+# Pipeline index for quotes and consents (revocable)
+# status: draft | asked | approved | published | revoked
+
+- id: sample-anchor
+  name: "Full Name"
+  role: "Title, Organization"
+  email: "assistant_or_alias@domain.tld"
+  status: draft
+  quote_id: Q1
+  quote_verbatim: "Open, repo‑first guardrails for AI are overdue. CoCivium is a useful push in that direction."
+  consent_file: "consent/2025-12-03_FullName.pdf"
+  publication_urls: []
+  revocation_ts: null
