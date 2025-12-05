@@ -39,3 +39,19 @@ pwsh -File "$RepoPath\tools\Set-PagesProtections.ps1" -RepoSlug 'rickballard/Ric
 - Tool: yt/tools/RenderPlaceholder.ps1 (local)
 - CI: .github/workflows/yt-placeholder.yml (dispatch with pisode)
 
+---
+CoProtect_SeedStage_v1:
+  license: 'CSPL-1.0 (CoCivium Seed-Stage Protective License)'
+  bucket: 'Private_RepoOnly'
+  rationale: 'Seed-stage protection of CoCivium / CoSuite rails, helpers, and governance patterns.'
+  openness_intent:
+    summary: 'Protect now, open later when safe and governed.'
+    notes:
+      - 'Planned evolution toward more open licensing as legal and safety structures mature.'
+  trademarks_notice:
+    summary: 'CoCivium and related names are claimed as trademarks or pending trademarks.'
+    usage:
+      - 'Use nominatively only.'
+      - 'Do not imply endorsement or affiliation without written permission.'
+  contact:
+    steward_email: 'contact@InSeed.com'

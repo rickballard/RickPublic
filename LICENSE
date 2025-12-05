@@ -1,0 +1,113 @@
+CoCivium Seed-Stage Protective License, Version 1.0 (CSPL-1.0)
+
+Copyright (c) 2025 InSeed Strategy Studio Inc. and CoCivium contributors.
+All rights reserved.
+
+1. Purpose
+
+This license is designed for the seed stage of the CoCivium / CoSuite project.
+It prioritises safety, integrity, and trust, and is intentionally more protective
+than typical open source licenses. The authors intend to relax these terms and
+transition suitable parts of the work to more open licensing once governance,
+legal, and safety structures are mature.
+
+2. Definitions
+
+"Software" means the source code, documentation, configuration files, diagrams,
+and any other files in this repository and its derivative works.
+
+"You" means the individual or entity exercising permissions under this license.
+
+3. Grant of rights
+
+Subject to the conditions in this license, You are granted a non-exclusive,
+non-transferable, revocable license to:
+
+- use and run the Software for your own internal evaluation;
+- read and study the Software to understand its design and behaviour;
+- contribute improvements back to the CoCivium / CoSuite ecosystem, for example
+  through patches, pull requests, or advisory notes.
+
+No other rights are granted. In particular:
+
+- You may not redistribute the Software, in whole or in part, in source or
+  compiled form, to any third party, except with prior written permission from
+  the steward entity designated for this repository.
+- You may not offer the Software as a hosted service or integrate it into
+  commercial products or services, except with prior written permission.
+- You may not remove or alter any copyright, license, or attribution notices.
+
+4. Ownership
+
+All rights, title, and interest in the Software are retained by the original
+authors and contributors and, where applicable, InSeed Strategy Studio Inc.
+or any future CoCivium steward trust designated in writing.
+
+Nothing in this license transfers ownership of any copyright, trademark, or
+other intellectual property right to You.
+
+5. Trademarks
+
+"CoCivium", "CoSuite", "CoCache", "CoSteward", "CoIndex", "CoAgent", "CoArena",
+"CoAudit", "CoContrib", "CoPolitic", "CoMeta", "CoAnchor", "CoGbx", and other
+related names, logos, and marks are claimed as trademarks or pending trademarks
+of the CoCivium project and its stewards.
+
+This license does not grant You any rights to use these marks, except for
+nominative use that fairly refers to the project and does not imply endorsement.
+You may not register or attempt to register any confusingly similar mark.
+
+6. Patents
+
+No patent rights are granted under this license. Any separate patent grants must
+be made explicitly in writing.
+
+7. No warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE AUTHORS AND COPYRIGHT HOLDERS SHALL
+NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH
+THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+8. Safety and governance
+
+You must not use the Software to build or operate systems that undermine
+democracy, human rights, or a safe and trustworthy hybrid society, or that are
+reasonably likely to cause serious harm.
+
+If You discover a way the Software could be misused to cause harm, You agree to
+notify the project stewards in good faith at:
+
+  contact@InSeed.com
+
+9. Future evolution and opening
+
+The intent of the CoCivium project is that, as safety and governance structures
+mature, suitable parts of the Software will be made available under more open
+licenses that allow broader reuse by humanity.
+
+Nothing in this license obliges the authors to make this change, but the
+commitment to evolve toward a safe and open ecosystem is part of the moral
+frame of the project.
+
+10. Termination
+
+This license terminates automatically if You breach any of its terms.
+Upon termination You must stop using the Software and destroy any copies in
+your possession, except to the extent you are required to retain them by law.
+
+The authors may choose to offer You a new license under different terms. Such a
+license must be in writing and will supersede this license for the scope it
+covers.
+
+11. Governing law
+
+This license is governed by the laws of the Province of Ontario and the laws of
+Canada applicable therein, without giving effect to conflict of law principles.
+
+If any provision of this license is held to be unenforceable, the remaining
+provisions shall remain in full force and effect.
+
