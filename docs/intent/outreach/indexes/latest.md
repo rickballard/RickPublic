@@ -1,4 +1,4 @@
-# Outreach/Marketing Intent Index — 20251205_134443Z
+# Outreach/Marketing Intent Index — 20251206_133544Z
 
 Sorted by **last updated**. Auto-categorized via taxonomy.
 
